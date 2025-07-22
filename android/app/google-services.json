@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "787399845323",
+    "project_id": "etkinlik-takip-99e51",
+    "storage_bucket": "etkinlik-takip-99e51.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787399845323:android:c430a87c0d50e8a552c24e",
+        "android_client_info": {
+          "package_name": "com.gokalpyildiz.etkinlik_takip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhdy-9yUEQoRdzua7klkN9CJkqOd1kD1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
