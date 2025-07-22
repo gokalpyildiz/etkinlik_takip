@@ -7,6 +7,7 @@ class AppRoute {
   /// Auth Routes
   static const splash = '/*';
   static const login = '/login';
+  static const register = '/register';
 
   /// Dashboard Routes
   static const dashboard = '/dashboard';
@@ -26,6 +27,7 @@ class AppRoute {
     guards: [..._commonGuards],
   );
   static AutoRoute loginRoute = AutoRoute(path: login, page: LoginRoute.page, guards: [..._commonGuards]);
+  static AutoRoute registerRoute = AutoRoute(path: register, page: RegisterRoute.page, guards: [..._commonGuards]);
   static AutoRoute dashboardRoute = AutoRoute(
     path: dashboard,
     page: DashBoardRoute.page,
@@ -46,7 +48,7 @@ class AppRoute {
     ],
   );
 
-  static List<AutoRoute> routes = [splashRoute, dashboardRoute, loginRoute];
+  static List<AutoRoute> routes = [splashRoute, dashboardRoute, loginRoute, registerRoute];
 }
 
 @RoutePage()
