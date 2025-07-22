@@ -8,7 +8,7 @@ part 'token_model.g.dart';
 
 @HiveType(typeId: HiveTypeIds.tokenModel)
 class TokenModel extends Equatable {
-  const TokenModel({this.token, this.expiration, this.refreshToken, this.refreshTokenExpireDate});
+  const TokenModel({this.token, this.expiration, this.refreshToken, this.refreshTokenExpireDate, this.userId});
 
   @HiveField(0)
   final String? token;
@@ -18,16 +18,19 @@ class TokenModel extends Equatable {
   final String? refreshToken;
   @HiveField(3)
   final DateTime? refreshTokenExpireDate;
+  @HiveField(4)
+  final String? userId;
 
   @override
-  List<Object?> get props => [token, expiration, refreshToken, refreshTokenExpireDate];
+  List<Object?> get props => [token, expiration, refreshToken, refreshTokenExpireDate, userId];
 
-  TokenModel copyWith({String? token, DateTime? expiration, String? refreshToken, DateTime? refreshTokenExpireDate}) {
+  TokenModel copyWith({String? token, DateTime? expiration, String? refreshToken, DateTime? refreshTokenExpireDate, String? userId}) {
     return TokenModel(
       token: token ?? this.token,
       expiration: expiration ?? this.expiration,
       refreshToken: refreshToken ?? this.refreshToken,
       refreshTokenExpireDate: refreshTokenExpireDate ?? this.refreshTokenExpireDate,
+      userId: userId ?? this.userId,
     );
   }
 }

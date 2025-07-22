@@ -46,7 +46,7 @@ class AppRoute {
     ],
   );
 
-  static List<AutoRoute> routes = [splashRoute, dashboardRoute];
+  static List<AutoRoute> routes = [splashRoute, dashboardRoute, loginRoute];
 }
 
 @RoutePage()
