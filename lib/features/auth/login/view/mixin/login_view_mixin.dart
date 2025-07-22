@@ -14,11 +14,7 @@ mixin LoginViewMixin on BaseState<LoginView> {
     super.initState();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    cubit = LoginCubit(
-      context: context,
-      emailController: emailController,
-      passwordController: passwordController,
-    )..init();
+    cubit = LoginCubit()..init();
   }
 
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;

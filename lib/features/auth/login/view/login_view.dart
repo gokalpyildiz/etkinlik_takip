@@ -35,6 +35,7 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
     create: (context) => cubit,
 
     child: BlocListener<LoginCubit, LoginState>(
+      listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
         if (state.formStatus == FormStatusEnum.failure) {
           FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
@@ -89,7 +90,12 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
                 ),
                 const SizedBox(height: 32),
                 Center(
-                  child: _LoginButton(formKey: formKey, changeAutoValidateMode: changeAutoValidateMode),
+                  child: _LoginButton(
+                    formKey: formKey,
+                    changeAutoValidateMode: changeAutoValidateMode,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 const Spacer(),

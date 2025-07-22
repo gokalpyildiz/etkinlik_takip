@@ -1,9 +1,11 @@
 part of '../login_view.dart';
 
 class _LoginButton extends StatelessWidget {
-  const _LoginButton({required this.formKey, required this.changeAutoValidateMode});
+  const _LoginButton({required this.formKey, required this.changeAutoValidateMode, required this.emailController, required this.passwordController});
   final GlobalKey<FormState> formKey;
   final void Function(AutovalidateMode) changeAutoValidateMode;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<LoginCubit>();
@@ -20,7 +22,7 @@ class _LoginButton extends StatelessWidget {
         if (!(formKey.currentState?.validate() ?? false)) {
           changeAutoValidateMode(AutovalidateMode.always);
         } else {
-          var response = await cubit.login();
+          var response = await cubit.login(email: emailController.text, password: passwordController.text);
           if (response) {
             TextInput.finishAutofillContext();
             ProductStateItems.productCubit.refreshBottomVies();
