@@ -20,6 +20,8 @@ dependencies:
   equatable: ^2.0.7
   get_it: ^8.0.3
   path_provider: ^2.1.5
+  flutter_localizations:
+    sdk: flutter
 
   #State
   flutter_bloc: ^9.1.0
@@ -48,7 +50,7 @@ dependencies:
   country_code_picker: ^3.3.0
   mask_text_input_formatter: ^2.9.0
   shimmer: ^3.0.0
-  cached_network_image: ^3.4.1
+
 
 
 

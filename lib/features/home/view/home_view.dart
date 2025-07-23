@@ -4,8 +4,11 @@ import 'package:etkinlik_takip/features/home/view/widgets/subwidgets/shimmer/hom
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/product/extensions/context_extension.dart';
 import 'package:etkinlik_takip/product/extensions/widget_extension.dart';
+import 'package:etkinlik_takip/product/functions/token_operation.dart';
 import 'package:etkinlik_takip/product/state/base/base_state.dart';
 import 'package:etkinlik_takip/product/widgets/base_widgets/my_scaffold.dart';
+import 'package:etkinlik_takip/product/widgets/common/snackbars/ftoast_snackbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +42,23 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
               child: CustomScrollView(
                 controller: cubit.scrollController,
                 slivers: [
+                  GestureDetector(
+                    child: Text('Expire Date'),
+                    onTap: () async {
+                      var response = await TokenOperation.instance.getTokenModel;
+                      var a = FirebaseAuth.instance.currentUser;
+                      var idTokenResult = await a?.getIdTokenResult();
+                      var expirationTime = idTokenResult?.expirationTime;
+                      debugPrint(response?.expiration.toString() ?? '');
+                      debugPrint(expirationTime.toString());
+                      FlutterToast.showSuccessful(context, title: expirationTime.toString() + (response?.expiration.toString() ?? 'ff'));
+                      // FirebaseAuth.instance.signOut();
+                    },
+                  ).toSliver,
                   GestureDetector(child: Text('Yenile'), onTap: () => cubit.refreshPage()).toSliver,
+                  GestureDetector(
+                    child: ElevatedButton(child: Text('Cıkıs Yap'), onPressed: () => FirebaseAuth.instance.signOut()),
+                  ).toSliver,
                   const SizedBox(height: 28).toSliver,
                   SliverList(
                     delegate: SliverChildListDelegate([

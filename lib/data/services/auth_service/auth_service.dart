@@ -4,6 +4,7 @@ import 'package:etkinlik_takip/data/models/base_models/error_model.dart';
 import 'package:etkinlik_takip/data/models/token/token_model.dart';
 import 'package:etkinlik_takip/data/services/auth_service/IAuthService.dart';
 import 'package:etkinlik_takip/data/services/base_services/IFirebaseBaseService.dart';
+import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_messaging.dart';
 import 'package:etkinlik_takip/product/functions/error_message_function.dart';
 import 'package:etkinlik_takip/product/utility/firebase/firebase_collections.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,6 +54,10 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       final response = await _auth.signInWithEmailAndPassword(email: email, password: password);
       var idTokenResult = await response.user?.getIdTokenResult();
       var expirationTime = idTokenResult?.expirationTime;
+      if (response.user != null) {
+        _updateUser(userId: response.user!.uid);
+      }
+
       return BaseResponseModel(
         data: TokenModel(token: response.user?.uid, expiration: expirationTime),
       );
@@ -67,14 +72,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
     }
   }
 
-  Future<void> _registerUser({
-    required String userId,
-    required String? name,
-    required String? email,
-    required String password,
-    String? phoneCountryCode,
-    String? phone,
-  }) async {
+  Future<void> _registerUser({String? userId, String? name, String? email, required String password, String? phoneCountryCode, String? phone}) async {
     try {
       await FirebaseCollections.users.reference.doc(userId).set({
         'email': email,
@@ -83,7 +81,24 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
         'phone': phone,
         'phoneCountryCode': phoneCountryCode,
         'userId': userId,
+        'notificationToken': FbMessaging.fcmToken,
         'registerDate': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+    } catch (e) {
+      setError(exception: e.toString());
+    }
+  }
+
+  Future<void> _updateUser({required String userId, String? name, String? email, String? password, String? phoneCountryCode, String? phone}) async {
+    try {
+      await FirebaseCollections.users.reference.doc(userId).set({
+        'email': email,
+        'name': name,
+        'password': password,
+        'phone': phone,
+        'phoneCountryCode': phoneCountryCode,
+        'userId': userId,
+        'notificationToken': FbMessaging.fcmToken,
       }, SetOptions(merge: true));
     } catch (e) {
       setError(exception: e.toString());

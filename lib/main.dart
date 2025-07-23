@@ -5,19 +5,59 @@ import 'package:etkinlik_takip/product/initialize/application_start.dart';
 import 'package:etkinlik_takip/product/initialize/bloc_initialize.dart';
 import 'package:etkinlik_takip/product/initialize/theme/custom_dark_theme.dart';
 import 'package:etkinlik_takip/product/initialize/theme/custom_light_theme.dart';
+import 'package:etkinlik_takip/product/navigation/app_router.dart';
+import 'package:etkinlik_takip/product/navigation/auto_route_handler.gr.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/state/viewmodel/product_cubit.dart';
+import 'package:etkinlik_takip/product/utility/project_manager.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   await ApplicationStart.init();
   runApp(const BlocInitialize(child: MyApp()));
 }
 
-final class MyApp extends StatelessWidget {
+final class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _onAuthChanged();
+    });
+  }
+
+  void _onAuthChanged() {
+    FirebaseAuth.instance.idTokenChanges().listen((User? user) async {
+      if (user == null) {
+        var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
+        final isAllowForGuest = currentUrl == AppRoute.splash || currentUrl == AppRoute.login || currentUrl == AppRoute.register;
+        if (!isAllowForGuest) {
+          ProductStateItems.appRouterHandler.replaceAll([LoginRoute()]);
+        }
+      } else {
+        var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
+        final isAllowForGuest = currentUrl == AppRoute.splash || currentUrl == AppRoute.login || currentUrl == AppRoute.register || currentUrl == '/';
+        var idTokenResult = await user.getIdTokenResult();
+        var date = idTokenResult.expirationTime;
+        var isExpired = date!.isBefore(DateTime.now());
+        if (isExpired && !isAllowForGuest) {
+          ProductStateItems.appRouterHandler.replaceAll([LoginRoute()]);
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -25,11 +65,12 @@ final class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: ProductStateItems.appRouterHandler.config(),
         theme: CustomLightTheme().themeData,
+        scaffoldMessengerKey: ProjectManager.scaffoldMessengerKey,
         darkTheme: CustomDarkTheme().themeData,
         themeMode: context.watch<ProductCubit>().state.themeMode,
         debugShowCheckedModeBanner: false,
         supportedLocales: AppLanguages.supportedCountryPhoneItems,
-        localizationsDelegates: [CountryLocalizations.delegate],
+        localizationsDelegates: [CountryLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
       ),
     );
   }
