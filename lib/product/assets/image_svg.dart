@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AssetsSvgGen {
   const AssetsSvgGen();
+  SvgGenImage get home => const SvgGenImage('assets/svg/home_icon.svg');
+  SvgGenImage get user => const SvgGenImage('assets/svg/user.svg');
 }
 
 class SvgGenImage {

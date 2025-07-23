@@ -14,8 +14,7 @@ import 'package:etkinlik_takip/features/auth/register/view/register_view.dart'
     as _i6;
 import 'package:etkinlik_takip/features/auth/splash/view/splash_view.dart'
     as _i7;
-import 'package:etkinlik_takip/features/dashboard/view/dashboard_view.dart'
-    as _i1;
+import 'package:etkinlik_takip/features/dashboard/dashboard_view.dart' as _i1;
 import 'package:etkinlik_takip/features/home/view/home_view.dart' as _i3;
 import 'package:etkinlik_takip/features/profile/view/profile_view.dart' as _i5;
 import 'package:etkinlik_takip/product/navigation/app_router.dart' as _i2;

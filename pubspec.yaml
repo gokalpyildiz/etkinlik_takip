@@ -71,6 +71,7 @@ flutter:
 
   assets:
     - assets/images/nations/
+    - assets/svg/
 
   uses-material-design: true
 flutter_launcher_icons:
