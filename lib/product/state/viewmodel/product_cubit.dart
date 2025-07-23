@@ -1,4 +1,5 @@
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
+import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/state/viewmodel/product_state.dart';
 import 'package:flutter/material.dart';
 
@@ -12,4 +13,8 @@ final class ProductCubit extends BaseCubit<ProductState> {
   }
 
   ThemeData get themeData => state.themeMode == ThemeMode.dark ? ThemeData.dark() : ThemeData.light();
+
+  Future<void> refreshBottomVies({bool clearCoupon = false}) async {
+    await Future.wait([ProductStateItems.profileCubit.refreshBottomVies(), ProductStateItems.homeCubit.refreshPage()]);
+  }
 }

@@ -12,7 +12,7 @@ class SplashView extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            context.router.push(const LoginRoute());
+            context.router.replace(LoginRoute());
           },
           child: Text('Start App'),
         ),

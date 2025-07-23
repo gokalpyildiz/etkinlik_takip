@@ -21,13 +21,14 @@ class TokenModelAdapter extends TypeAdapter<TokenModel> {
       expiration: fields[1] as DateTime?,
       refreshToken: fields[2] as String?,
       refreshTokenExpireDate: fields[3] as DateTime?,
+      userId: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TokenModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.token)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class TokenModelAdapter extends TypeAdapter<TokenModel> {
       ..writeByte(2)
       ..write(obj.refreshToken)
       ..writeByte(3)
-      ..write(obj.refreshTokenExpireDate);
+      ..write(obj.refreshTokenExpireDate)
+      ..writeByte(4)
+      ..write(obj.userId);
   }
 
   @override

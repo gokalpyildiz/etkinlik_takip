@@ -4,7 +4,6 @@ import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_core.dart
 import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_messaging.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_container.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
