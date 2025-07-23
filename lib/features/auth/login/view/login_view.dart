@@ -40,7 +40,8 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
           FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
         } else if (state.formStatus == FormStatusEnum.success) {
           FlutterToast.showSuccessful(context, title: 'Giriş Başarılı');
-          context.router.replaceAll([HomeRoute()]);
+          context.router.replaceAll([DashBoardRoute()]);
+          ProductStateItems.productCubit.refreshBottomVies();
         }
       },
       child: Form(

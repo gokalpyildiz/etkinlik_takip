@@ -45,7 +45,8 @@ class _RegisterViewState extends BaseState<RegisterView> with RegisterViewMixin 
           } else if (state.formStatus == FormStatusEnum.success) {
             FlutterToast.showSuccessful(context, title: 'Kayıt Başarılı');
             ProductStateItems.productCubit.refreshBottomVies();
-            context.router.replaceAll([HomeRoute()]);
+            context.router.replaceAll([DashBoardRoute()]);
+            ProductStateItems.productCubit.refreshBottomVies();
           }
         },
         child: MyScaffold(
