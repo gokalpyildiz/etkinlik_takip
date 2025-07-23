@@ -27,9 +27,7 @@ class RegisterCubit extends BaseCubit<RegisterState> {
   String? email;
   String? password;
   String? phone;
-  bool isCampaignEmailActive = true;
   CountryCode? countryCode;
-  bool isTermsOfUse = false;
   String? errorMessage;
   Future<void> register() async {
     var register = RegisterRequestModel(
@@ -41,9 +39,10 @@ class RegisterCubit extends BaseCubit<RegisterState> {
       phoneCountryCode: countryCode?.dialCode,
     );
     emit(state.copyWith(formStatus: FormStatusEnum.loading));
+    phone = phone?.replaceAll(' ', '');
     var response = await _service.register(register: register);
     if (response?.data != null) {
-      if (response?.data?.userId == null) {
+      if (response?.data?.token == null) {
         errorMessage = response?.error?.errorMessage ?? 'Hesap oluşturulurken bir hata oluştu';
         emit(state.copyWith(formStatus: FormStatusEnum.failure));
         return;

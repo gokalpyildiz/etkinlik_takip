@@ -21,7 +21,14 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       }
       final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: register.email!, password: register.password!);
       if (userCredential.user != null) {
-        await _registerUser(userId: userCredential.user!.uid, name: register.name, email: register.email, password: register.password!);
+        await _registerUser(
+          userId: userCredential.user!.uid,
+          name: register.name,
+          email: register.email,
+          password: register.password!,
+          phone: register.phone,
+          phoneCountryCode: register.phoneCountryCode,
+        );
       }
       var idTokenResult = await userCredential.user?.getIdTokenResult();
       var expirationTime = idTokenResult?.expirationTime;

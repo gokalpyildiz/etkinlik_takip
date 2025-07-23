@@ -1,4 +1,5 @@
 import 'package:etkinlik_takip/product/extensions/context_extension.dart';
+import 'package:etkinlik_takip/product/initialize/theme/custom_color_scheme.dart';
 import 'package:etkinlik_takip/product/widgets/common/snackbars/flutter_toast_widgets/base_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -23,7 +24,7 @@ final class FlutterToast {
         child: BaseToastWidget(
           title: title,
           subTitle: subTitle,
-          icon: icon ?? Icon(Icons.check, color: context.appTheme.colorScheme.surface),
+          icon: icon ?? Icon(Icons.check, color: context.appTheme.colorScheme.success),
           backgroundColor: context.colorScheme.primaryContainer,
           subTextColor: context.appTheme.colorScheme.onSurfaceVariant,
         ),
@@ -47,10 +48,8 @@ final class FlutterToast {
     final fToast = FToast();
     fToast
       ..removeQueuedCustomToasts()
-      // _fToast.init(ProductStateItems.appRouterHandler.navigatorKey.currentContext!);
       ..init(context)
       ..showToast(
-        // child: ToastErrorWidget(title: title, subTitle: subTitle),
         child: BaseToastWidget(
           title: title,
           subTitle: subTitle,
@@ -59,7 +58,6 @@ final class FlutterToast {
           textColor: context.appTheme.colorScheme.surface,
           subTextColor: context.appTheme.colorScheme.surface,
         ),
-        //gravity: gravity,
         toastDuration: toastDuration,
         gravity: gravity,
         positionedToastBuilder: (context, child, gravity) {
@@ -79,7 +77,6 @@ final class FlutterToast {
       msg: title,
       toastLength: Toast.LENGTH_SHORT,
       gravity: gravity,
-      //color scheme error rengi
       backgroundColor: backgroundColor ?? const Color.fromRGBO(255, 82, 71, 1),
       textColor: textColor ?? Colors.white,
       fontSize: 16,

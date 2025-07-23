@@ -8,8 +8,8 @@ final class CustomColorScheme {
   //xx =>dont change because is used
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
-    primary: Color.fromRGBO(19, 79, 174, 1),
-    onPrimary: Color(0xFFFFFFFF),
+    primary: Color.fromRGBO(19, 79, 174, 1), //XX
+    onPrimary: Color(0xFFFFFFFF), //XX
     primaryContainer: Color.fromRGBO(243, 244, 246, 1),
     onPrimaryContainer: Color.fromRGBO(107, 114, 128, 1),
     secondary: Color.fromRGBO(27, 100, 242, 1),
@@ -71,4 +71,8 @@ final class CustomColorScheme {
     outlineVariant: Color(0xFF49454F),
     scrim: Color(0xFF000000),
   );
+}
+
+extension CustomColorSchemeExtension on ColorScheme {
+  Color get success => Color.fromRGBO(35, 193, 107, 1);
 }

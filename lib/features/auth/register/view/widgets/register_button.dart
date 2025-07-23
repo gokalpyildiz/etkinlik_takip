@@ -11,12 +11,17 @@ class RegisterButton extends StatelessWidget {
     final watch = context.watch<RegisterCubit>();
     return ElevatedButton(
       style: ButtonStyle(backgroundColor: WidgetStateProperty.all(context.appTheme.colorScheme.primary)),
-      child: watch.state.formStatus == FormStatusEnum.loading
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [SpinKitFadingCircle(color: context.colorScheme.onPrimary, size: 25)],
-            )
-          : MyText('Kayıt Ol', color: context.colorScheme.onPrimary, fontWeight: FontWeight.w600),
+      child: SizedBox(
+        width: 100,
+        child: watch.state.formStatus == FormStatusEnum.loading
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [SpinKitFadingCircle(color: context.colorScheme.onPrimary, size: 25)],
+              )
+            : Center(
+                child: MyText('Kayıt Ol', color: context.colorScheme.onPrimary, fontWeight: FontWeight.w600),
+              ),
+      ),
       onPressed: () async {
         if (!(formKey.currentState?.validate() ?? false)) {
           changeAutoValidateMode(AutovalidateMode.always);

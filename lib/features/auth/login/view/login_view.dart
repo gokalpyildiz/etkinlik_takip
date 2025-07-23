@@ -33,7 +33,6 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
   @override
   Widget build(BuildContext context) => BlocProvider(
     create: (context) => cubit,
-
     child: BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) => previous.formStatus != current.formStatus,
       listener: (context, state) {
@@ -41,6 +40,7 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
           FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
         } else if (state.formStatus == FormStatusEnum.success) {
           FlutterToast.showSuccessful(context, title: 'Giriş Başarılı');
+          context.router.replaceAll([HomeRoute()]);
         }
       },
       child: Form(

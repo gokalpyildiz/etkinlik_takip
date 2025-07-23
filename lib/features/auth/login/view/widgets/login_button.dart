@@ -12,12 +12,17 @@ class _LoginButton extends StatelessWidget {
     var watch = context.watch<LoginCubit>();
     return ElevatedButton(
       style: ButtonStyle(backgroundColor: WidgetStateProperty.all(context.appTheme.colorScheme.primary)),
-      child: watch.state.formStatus == FormStatusEnum.loading
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [SpinKitFadingCircle(color: context.colorScheme.onPrimary, size: 25)],
-            )
-          : MyText('Giriş Yap', color: context.colorScheme.onPrimary, fontWeight: FontWeight.w600),
+      child: SizedBox(
+        width: 100,
+        child: watch.state.formStatus == FormStatusEnum.loading
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [SpinKitFadingCircle(color: context.colorScheme.onPrimary, size: 25)],
+              )
+            : Center(
+                child: MyText('Giriş Yap', color: context.colorScheme.onPrimary, fontWeight: FontWeight.w600),
+              ),
+      ),
       onPressed: () async {
         if (!(formKey.currentState?.validate() ?? false)) {
           changeAutoValidateMode(AutovalidateMode.always);
