@@ -1,4 +1,3 @@
-import 'package:etkinlik_takip/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,7 +27,7 @@ class MyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text ?? '*null*',
-      style: TextStyle(decoration: decoration, fontSize: fontSize.sp, color: color ?? context.colorScheme.onPrimary, fontWeight: fontWeight),
+      style: TextStyle(decoration: decoration, fontSize: fontSize.sp, color: color, fontWeight: fontWeight),
       overflow: overflow,
       maxLines: maxLines,
       textAlign: textAlign,
