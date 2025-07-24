@@ -58,18 +58,15 @@ final class HomeCubit extends BaseCubit<HomeState> {
   }
 
   Future<void> _getEventsWithCache() async {
-    await Future.delayed(const Duration(seconds: 3));
     final response = await _eventCacheFunc.getEvents();
     events = (response?.events?.toList()) ?? [];
   }
 
   Future<void> _setEventsWithCache(List<EventModel> events) async {
-    await Future.delayed(const Duration(seconds: 3));
     await _eventCacheFunc.setEvents(events);
   }
 
   Future<void> _setEvents() async {
-    await Future.delayed(const Duration(seconds: 3));
     var response = await _service.getEvents();
     if (response?.data != null) {
       _setEventsWithCache(response?.data ?? []);
