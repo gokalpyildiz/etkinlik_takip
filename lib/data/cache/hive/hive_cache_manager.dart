@@ -5,8 +5,8 @@ import 'dart:typed_data';
 
 import 'package:etkinlik_takip/data/cache/core/manager/cache_manager.dart';
 import 'package:etkinlik_takip/data/cache/hive/constants/hive_box_names.dart';
-import 'package:etkinlik_takip/data/models/event_list_model.dart';
-import 'package:etkinlik_takip/data/models/event_model.dart';
+import 'package:etkinlik_takip/data/models/event_models/event_list_model.dart';
+import 'package:etkinlik_takip/data/models/event_models/event_model.dart';
 import 'package:etkinlik_takip/data/models/token/token_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -18,20 +18,20 @@ final class HiveCacheManager extends CacheManager {
 
   @override
   Future<void> init() async {
-    await setHive();
+    await _setHive();
   }
 
   @override
   Future<void> remove() async => Hive.deleteFromDisk();
 
-  Future<void> setHive() async {
-    await setDir();
+  Future<void> _setHive() async {
+    await _setDir();
     final encryptionKey = await createEncryption();
-    await setAdapters();
+    await _setAdapters();
     await setBoxes(encryptionKey);
   }
 
-  Future<void> setDir() async {
+  Future<void> _setDir() async {
     try {
       const keyPath = 'hiveVersion';
       final dbDir = await getApplicationDocumentsDirectory();
@@ -41,7 +41,7 @@ final class HiveCacheManager extends CacheManager {
     }
   }
 
-  Future<void> setAdapters() async {
+  Future<void> _setAdapters() async {
     try {
       Hive
         ..registerAdapter(TokenModelAdapter())

@@ -2,46 +2,12 @@ import 'package:flutter/material.dart';
 
 class AssetsImagesGen {
   const AssetsImagesGen();
-
-  /// File path: assets/images/img_flags.png
-  AssetGenImage get imgWelcome => const AssetGenImage('assets/images/welcome.png');
-  AssetGenImage get imgWelcomeTransparent => const AssetGenImage('assets/images/welcomeTransparent.png');
-
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
-  AssetGenImage get logoTransparent => const AssetGenImage('assets/images/logoTransparent.png');
-  AssetGenImage get imgSplash => const AssetGenImage('assets/images/splash.png');
   AssetGenImage get turkeyCircle => const AssetGenImage('assets/images/nations/turkey_circle.png');
   AssetGenImage get turkeySquare => const AssetGenImage('assets/images/nations/turkey_square.png');
-  // AssetGenImage get googleContainer => const AssetGenImage('assets/images/google_container.png');
-  // AssetGenImage get facebookContainer => const AssetGenImage('assets/images/facebook_container.png');
-  // AssetGenImage get appleContainer => const AssetGenImage('assets/images/apple_container.png');
-  AssetGenImage get splashBackGround => const AssetGenImage('assets/images/splash_background.png');
-  AssetGenImage get appLogo => const AssetGenImage('assets/images/app_logo.png');
-  AssetGenImage get visaLogo => const AssetGenImage('assets/images/credit_card_icons/visa.png');
-  AssetGenImage get masterCardLogo => const AssetGenImage('assets/images/credit_card_icons/mastercard.png');
-  AssetGenImage get americanExpressLogo => const AssetGenImage('assets/images/credit_card_icons/american_express.png');
-  AssetGenImage get discoverLogo => const AssetGenImage('assets/images/credit_card_icons/discover.png');
-  AssetGenImage get dinnersClubLogo => const AssetGenImage('assets/images/credit_card_icons/dinners_club.png');
-  AssetGenImage get jcbLogo => const AssetGenImage('assets/images/credit_card_icons/jcb.png');
-  AssetGenImage get verveLogo => const AssetGenImage('assets/images/credit_card_icons/verve.png');
-  AssetGenImage get mapFinger => const AssetGenImage('assets/images/map-finger.png');
-  AssetGenImage get car1 => const AssetGenImage('assets/images/car1.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-    logo,
-    imgWelcome,
-    imgSplash,
-    turkeySquare,
-    turkeyCircle,
-    // googleContainer,
-    // facebookContainer,
-    // appleContainer,
-    splashBackGround,
-    appLogo,
-    mapFinger,
-    car1,
-  ];
+  List<AssetGenImage> get values => [logo, turkeySquare, turkeyCircle];
 }
 
 class AssetGenImage {

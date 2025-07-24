@@ -8,10 +8,10 @@ import 'package:etkinlik_takip/product/navigation/app_router.dart';
 import 'package:etkinlik_takip/product/navigation/auto_route_handler.gr.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 
-class TokenOperation {
-  TokenOperation._init();
-  static final TokenOperation _instance = TokenOperation._init();
-  static TokenOperation get instance => _instance;
+class AuthOperation {
+  AuthOperation._init();
+  static final AuthOperation _instance = AuthOperation._init();
+  static AuthOperation get instance => _instance;
   final _tokenCache = ProductStateItems.productCache.tokenCacheOperation;
 
   Timer? _tokenControlTimer;
