@@ -1,4 +1,5 @@
-part of '../../home_view.dart';
+import 'package:etkinlik_takip/product/extensions/context_extension.dart';
+import 'package:flutter/material.dart';
 
 class EventPhotoWidget extends StatelessWidget {
   const EventPhotoWidget({super.key, this.imageList});

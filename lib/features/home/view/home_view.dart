@@ -4,14 +4,16 @@ import 'package:etkinlik_takip/features/home/view/widgets/subwidgets/shimmer/hom
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/product/extensions/context_extension.dart';
 import 'package:etkinlik_takip/product/extensions/widget_extension.dart';
+import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_messaging.dart';
+import 'package:etkinlik_takip/product/navigation/auto_route_handler.gr.dart';
 import 'package:etkinlik_takip/product/state/base/base_state.dart';
 import 'package:etkinlik_takip/product/widgets/base_widgets/my_scaffold.dart';
+import 'package:etkinlik_takip/product/widgets/common/photo_widget.dart';
 import 'package:etkinlik_takip/product/widgets/common/snackbars/ftoast_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'mixin.dart/home_view_mixin.dart';
-part 'widgets/subwidgets/photo_widget.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {
@@ -21,6 +23,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateMixin, HomeViewMixin {
+  @override
+  void initState() {
+    super.initState();
+    FbMessaging.instance.processPendingNotification();
+  }
+
   @override
   Widget build(BuildContext context) => BlocProvider.value(
     value: cubit,
@@ -78,6 +86,10 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
                                       style: const TextStyle(fontWeight: FontWeight.bold),
                                     ),
                                   ),
+                                ).toGesture(
+                                  onTap: () {
+                                    if (event.id != null) context.router.push(EventDetailRoute(eventId: event.id!));
+                                  },
                                 );
                               },
                             ),

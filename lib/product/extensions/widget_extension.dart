@@ -21,4 +21,22 @@ extension WidgetExtension on Widget {
       ],
     );
   }
+
+  Widget toGesture({
+    GestureTapCallback? onTap,
+    GestureTapCallback? onDoubleTap,
+    GestureLongPressCallback? onLongPress,
+    GestureDragUpdateCallback? onVerticalDragUpdate,
+    GestureDragUpdateCallback? onHorizontalDragUpdate,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      onDoubleTap: onDoubleTap,
+      onLongPress: onLongPress,
+      onVerticalDragUpdate: onVerticalDragUpdate,
+      onHorizontalDragUpdate: onHorizontalDragUpdate,
+      behavior: HitTestBehavior.opaque,
+      child: this,
+    );
+  }
 }
