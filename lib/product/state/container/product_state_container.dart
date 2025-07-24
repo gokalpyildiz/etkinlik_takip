@@ -1,9 +1,11 @@
+import 'package:etkinlik_takip/data/cache/cache_services/event_cache_service.dart';
 import 'package:etkinlik_takip/data/cache/hive/hive_cache_manager.dart';
 import 'package:etkinlik_takip/data/cache/product_cache.dart';
 import 'package:etkinlik_takip/features/dashboard/viewmodel/dashboard_cubit.dart';
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/features/profile/viewmodel/profile_cubit.dart';
 import 'package:etkinlik_takip/product/navigation/auto_route_handler.dart';
+import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/state/viewmodel/product_cubit.dart';
 import 'package:get_it/get_it.dart';
 
@@ -23,7 +25,7 @@ final class ProductContainer {
       ..registerLazySingleton<ProductCubit>(ProductCubit.new)
       ..registerLazySingleton<ProfileCubit>(ProfileCubit.new)
       ..registerLazySingleton(() {
-        return HomeCubit();
+        return HomeCubit(eventCacheFunc: EventCacheService(eventListCacheOperation: ProductStateItems.productCache.eventListCacheOperation));
       });
   }
 

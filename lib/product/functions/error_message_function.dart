@@ -4,7 +4,7 @@ final class ErrorMessageFunction {
   factory ErrorMessageFunction() {
     return _instance ?? (_instance = ErrorMessageFunction._());
   }
-  String getFirebaseAuthErrorMessage(String code) {
+  String getFirebaseErrorMessage(String code) {
     switch (code) {
       case 'invalid-credential':
       case 'invalid-email':

@@ -36,7 +36,7 @@ class RegisterCubit extends BaseCubit<RegisterState> {
       email: email,
       password: password,
       phone: phone,
-      phoneCountryCode: countryCode?.dialCode,
+      phoneCountryCode: phone == null ? null : countryCode?.dialCode,
     );
     emit(state.copyWith(formStatus: FormStatusEnum.loading));
     phone = phone?.replaceAll(' ', '');

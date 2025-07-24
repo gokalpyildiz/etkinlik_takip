@@ -1,4 +1,5 @@
 import 'package:etkinlik_takip/data/cache/product_cache.dart';
+import 'package:etkinlik_takip/features/dashboard/viewmodel/dashboard_cubit.dart';
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/features/profile/viewmodel/profile_cubit.dart';
 import 'package:etkinlik_takip/product/navigation/auto_route_handler.dart';
@@ -13,4 +14,5 @@ final class ProductStateItems {
   static AppRouter get appRouterHandler => ProductContainer.readDepInj<AppRouter>();
   static HomeCubit get homeCubit => ProductContainer.readDepInj<HomeCubit>();
   static ProfileCubit get profileCubit => ProductContainer.readDepInj<ProfileCubit>();
+  static DashboardCubit get dashboardCubit => ProductContainer.readDepInj<DashboardCubit>();
 }
