@@ -1,3 +1,4 @@
+import 'package:etkinlik_takip/features/profile/viewmodel/profile_cubit.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/state/viewmodel/product_cubit.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,10 @@ final class BlocInitialize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider<ProductCubit>.value(value: ProductStateItems.productCubit)],
+      providers: [
+        BlocProvider<ProductCubit>.value(value: ProductStateItems.productCubit),
+        BlocProvider<ProfileCubit>.value(value: ProductStateItems.profileCubit),
+      ],
       child: child,
     );
   }

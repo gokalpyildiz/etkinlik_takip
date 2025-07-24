@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:etkinlik_takip/features/profile/viewmodel/profile_cubit.dart';
+import 'package:etkinlik_takip/product/extensions/widget_extension.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/widgets/base_widgets/my_scaffold.dart';
 import 'package:etkinlik_takip/product/widgets/common/text/my_text.dart';
@@ -28,6 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
           final nameSurname = '${user?.name ?? ''}  ${user?.surname ?? ''}';
           final email = user?.email ?? '';
           final phone = (user?.phoneCountryCode ?? '') + (user?.phone ?? '');
+          final notfcId = user?.notificationToken;
           return MyScaffold(
             appBar: AppBar(title: MyText('Profil')),
             child: SingleChildScrollView(
@@ -36,7 +38,11 @@ class _ProfileViewState extends State<ProfileView> {
                   Card(
                     child: ListTile(
                       title: MyText(nameSurname),
-                      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [MyText(email), MyText(phone)]),
+                      subtitle: Column(
+                        spacing: 5,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [MyText(email), MyText(phone), if (notfcId != null) MyText(notfcId).toCopyWidgetWithIcon(context, notfcId)],
+                      ),
                     ),
                   ),
                   Center(

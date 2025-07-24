@@ -7,7 +7,7 @@ import 'package:etkinlik_takip/data/models/token/token_model.dart';
 import 'package:etkinlik_takip/data/services/auth_service/IAuthService.dart';
 import 'package:etkinlik_takip/data/services/auth_service/auth_service.dart';
 import 'package:etkinlik_takip/product/enums/form_status_enum.dart';
-import 'package:etkinlik_takip/product/functions/token_operation.dart';
+import 'package:etkinlik_takip/product/functions/auth_operation.dart';
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 part 'register_state.dart';
 
@@ -51,7 +51,7 @@ class RegisterCubit extends BaseCubit<RegisterState> {
       var value = response?.data;
       if (value is TokenModel) {
         if (value.token != null) {
-          TokenOperation.instance.setToken(value);
+          AuthOperation.instance.setToken(value);
           emit(state.copyWith(formStatus: FormStatusEnum.success));
         }
       }

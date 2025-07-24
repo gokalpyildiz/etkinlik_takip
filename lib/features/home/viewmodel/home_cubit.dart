@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:etkinlik_takip/data/cache/cache_services/event_cache_service.dart';
-import 'package:etkinlik_takip/data/models/event_model.dart';
+import 'package:etkinlik_takip/data/models/event_models/event_model.dart';
 import 'package:etkinlik_takip/data/services/connectivity_service/IConnectivityService.dart';
 import 'package:etkinlik_takip/data/services/event_service/IEventService.dart';
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';

@@ -11,16 +11,14 @@ import 'package:etkinlik_takip/product/state/container/product_state_items.dart'
 import 'package:etkinlik_takip/product/state/viewmodel/product_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-/// Product container for dependency injection
+/// Uygulama bağımlılıklarını merkezileştirdiğimiz Dependency Injection işlemlerini ProductContainer ile yönetiriz
 final class ProductContainer {
   const ProductContainer._();
   static final _getIt = GetIt.I;
 
-  /// Product core required items
   static void setup() {
-    //buraya eklenenler ProductStateItems a eklenerek kullanılabilir.
+    //sürekli açık olması ve her yerden erişilmesi gereken bloc sınıfları burada tanımlanmalı
     _getIt
-      //lazysingleton çağrıldığında oluşturulur verimlilik için, singleton doğrudan kullanılır.
       ..registerSingleton<ProductCache>(ProductCache(cacheManager: HiveCacheManager()))
       ..registerLazySingleton<AppRouter>(AppRouter.new)
       ..registerLazySingleton<DashboardCubit>(DashboardCubit.new)

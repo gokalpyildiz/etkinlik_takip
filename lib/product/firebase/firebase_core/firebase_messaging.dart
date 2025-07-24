@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:etkinlik_takip/product/utility/project_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -45,21 +44,16 @@ class FbMessaging {
 
   @pragma('vm:entry-point')
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-    ProjectManager.scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(message.data.toString() + 'onBackgroundMessage')));
     debugPrint('onBackgroundMessage');
     await Firebase.initializeApp();
   }
 
   void _handleMessage1(RemoteMessage? message) {
     debugPrint('onMessageOpenedApp');
-    ProjectManager.scaffoldMessengerKey.currentState?.showSnackBar(
-      SnackBar(content: Text('${message?.data.toString() ?? 'null'}onMessageOpenedApp')),
-    );
   }
 
   Future<void> _handleMessage2(RemoteMessage? message) async {
     debugPrint('onMessage');
-    ProjectManager.scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text('${message?.data.toString() ?? 'null'}onMessage')));
     const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
       CHANNEL_ID,
       CHANNEL_NAME,
@@ -74,6 +68,5 @@ class FbMessaging {
 
   void _handleMessage3(RemoteMessage? message) {
     debugPrint('initialmessage');
-    ProjectManager.scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text('${message?.data.toString() ?? 'null'}initialmessage')));
   }
 }

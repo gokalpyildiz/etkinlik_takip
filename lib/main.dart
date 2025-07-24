@@ -1,7 +1,6 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:etkinlik_takip/product/constants/app/language_constants.dart';
 import 'package:etkinlik_takip/product/constants/ui/ui_constants.dart';
-import 'package:etkinlik_takip/product/functions/token_operation.dart';
+import 'package:etkinlik_takip/product/functions/auth_operation.dart';
 import 'package:etkinlik_takip/product/initialize/application_start.dart';
 import 'package:etkinlik_takip/product/initialize/bloc_initialize.dart';
 import 'package:etkinlik_takip/product/initialize/theme/custom_dark_theme.dart';
@@ -39,13 +38,13 @@ class _MyAppState extends State<MyApp> {
   void _onAuthChanged() {
     FirebaseAuth.instance.idTokenChanges().listen((User? user) async {
       if (user == null) {
-        TokenOperation.instance.routeLogin();
+        AuthOperation.instance.routeLogin();
       } else {
         var idTokenResult = await user.getIdTokenResult();
         var date = idTokenResult.expirationTime;
         var isExpired = date!.isBefore(DateTime.now());
         if (isExpired) {
-          TokenOperation.instance.routeLogin();
+          AuthOperation.instance.routeLogin();
         }
       }
     });
@@ -63,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: context.watch<ProductCubit>().state.themeMode,
         debugShowCheckedModeBanner: false,
         supportedLocales: AppLanguages.supportedCountryPhoneItems,
-        localizationsDelegates: [CountryLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
       ),
     );
   }

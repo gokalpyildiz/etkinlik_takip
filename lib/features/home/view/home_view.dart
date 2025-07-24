@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etkinlik_takip/data/models/event_model.dart';
+import 'package:etkinlik_takip/data/models/event_models/event_model.dart';
 import 'package:etkinlik_takip/features/home/view/widgets/subwidgets/shimmer/home_shimmer.dart';
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/product/extensions/context_extension.dart';
@@ -46,7 +46,6 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
               child: CustomScrollView(
                 controller: cubit.scrollController,
                 slivers: [
-                  ElevatedButton(child: Text('Yenile'), onPressed: () => cubit.refreshPage()).toSliver,
                   const SizedBox(height: 28).toSliver,
                   SliverList(
                     delegate: SliverChildListDelegate([
