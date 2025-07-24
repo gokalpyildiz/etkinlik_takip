@@ -40,6 +40,7 @@ class RegisterCubit extends BaseCubit<RegisterState> {
     );
     emit(state.copyWith(formStatus: FormStatusEnum.loading));
     phone = phone?.replaceAll(' ', '');
+    register = register.copyWith(phone: phone);
     var response = await _service.register(register: register);
     if (response?.data != null) {
       if (response?.data?.token == null) {
