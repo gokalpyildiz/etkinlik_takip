@@ -31,8 +31,14 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
       onRefresh: () async {
         await cubit.refreshPage();
       },
-      child: BlocBuilder<HomeCubit, HomeState>(
+      child: BlocConsumer<HomeCubit, HomeState>(
         buildWhen: (previous, current) => previous.isLoading != current.isLoading,
+        listenWhen: (previous, current) => previous.showSuccesConnection != current.showSuccesConnection,
+        listener: (context, state) {
+          if (state.showSuccesConnection) {
+            FlutterToast.showSuccessful(context, title: 'Yeniden Bağlandı');
+          }
+        },
         builder: (context, state) {
           if (state.isLoading) return HomeShimmer();
           return PopScope(

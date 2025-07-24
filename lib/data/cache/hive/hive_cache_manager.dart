@@ -5,16 +5,15 @@ import 'dart:typed_data';
 
 import 'package:etkinlik_takip/data/cache/core/manager/cache_manager.dart';
 import 'package:etkinlik_takip/data/cache/hive/constants/hive_box_names.dart';
+import 'package:etkinlik_takip/data/models/event_list_model.dart';
+import 'package:etkinlik_takip/data/models/event_model.dart';
 import 'package:etkinlik_takip/data/models/token/token_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// The HiveCacheManager class is an implementation of the CacheManager class.
 final class HiveCacheManager extends CacheManager {
-  /// [path] is the path to the directory
-  ///  where the Hive database files are stored.
   HiveCacheManager();
 
   @override
@@ -34,8 +33,6 @@ final class HiveCacheManager extends CacheManager {
 
   Future<void> setDir() async {
     try {
-      // final document = await getApplicationDocumentsDirectory();
-      // await Hive.initFlutter(document.path);
       const keyPath = 'hiveVersion';
       final dbDir = await getApplicationDocumentsDirectory();
       await Hive.initFlutter('${dbDir.path}/$keyPath');
@@ -46,7 +43,10 @@ final class HiveCacheManager extends CacheManager {
 
   Future<void> setAdapters() async {
     try {
-      Hive.registerAdapter(TokenModelAdapter());
+      Hive
+        ..registerAdapter(TokenModelAdapter())
+        ..registerAdapter(EventModelAdapter())
+        ..registerAdapter(EventListModelAdapter());
     } catch (e) {
       //TODO crash service implement
     }
@@ -55,6 +55,7 @@ final class HiveCacheManager extends CacheManager {
   Future<void> setBoxes(Uint8List encryptionKey) async {
     try {
       await Hive.openBox<TokenModel>(HiveBoxNames.token.value, encryptionCipher: HiveAesCipher(encryptionKey));
+      await Hive.openBox<EventListModel>(HiveBoxNames.eventList.value);
     } catch (e) {
       //TODO crash service implement
     }

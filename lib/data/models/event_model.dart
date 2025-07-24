@@ -1,12 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:etkinlik_takip/data/cache/hive/constants/hive_type_ids.dart';
+import 'package:hive/hive.dart';
 
+part 'event_model.g.dart';
+
+@HiveType(typeId: HiveTypeIds.eventModel)
 class EventModel extends Equatable {
-  final String? title;
-  final String? description;
-  final DateTime? date;
-  final List<String>? imageList;
+  @HiveField(0)
   final String? id;
+  @HiveField(1)
+  final String? title;
+  @HiveField(2)
+  final String? description;
+  @HiveField(3)
+  final DateTime? date;
+  @HiveField(4)
+  final List<String>? imageList;
 
   const EventModel({this.title, this.description, this.date, this.imageList, this.id});
   @override

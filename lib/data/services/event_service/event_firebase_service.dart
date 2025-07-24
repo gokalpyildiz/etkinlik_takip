@@ -28,9 +28,9 @@ class EventFirebaseService extends IFirebaseBaseService implements IEventService
 
       if (response.docs.isNotEmpty) {
         final values = response.docs.map((e) => e.data()).toList();
-        return BasePaginationModel(data: values);
+        return BasePaginationModel(data: values, success: true);
       }
-      return BasePaginationModel(data: []);
+      return BasePaginationModel(data: [], success: true);
     } catch (e, stackTrace) {
       String? errorMessage;
       if (e is FirebaseAuthException) {
@@ -38,7 +38,7 @@ class EventFirebaseService extends IFirebaseBaseService implements IEventService
       }
       errorMessage ??= 'Etkinlikler gösterilemiyor';
       setError(exception: e, stackTrace: stackTrace);
-      return BasePaginationModel(error: ErrorModel(errorMessage: errorMessage));
+      return BasePaginationModel(error: ErrorModel(errorMessage: errorMessage), success: true);
     }
   }
 }

@@ -19,7 +19,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
   Future<BaseResponseModel<TokenModel>?> register({required RegisterRequestModel register}) async {
     try {
       if (register.email == null || register.password == null) {
-        return BaseResponseModel(error: ErrorModel(errorMessage: 'Lütfen tüm alanları doldurunuz'));
+        return BaseResponseModel(error: ErrorModel(errorMessage: 'Lütfen tüm alanları doldurunuz'), success: false);
       }
       final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: register.email!, password: register.password!);
       if (userCredential.user != null) {
@@ -36,6 +36,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       var expirationTime = idTokenResult?.expirationTime;
       return BaseResponseModel(
         data: TokenModel(token: userCredential.user?.uid, expiration: expirationTime),
+        success: true,
       );
     } catch (e, stackTrace) {
       String? errorMessage;
@@ -44,7 +45,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       }
       errorMessage ??= 'Kayıt Yapılamadı';
       setError(exception: e, stackTrace: stackTrace);
-      return BaseResponseModel(error: ErrorModel(errorMessage: errorMessage));
+      return BaseResponseModel(error: ErrorModel(errorMessage: errorMessage), success: false);
     }
   }
 
@@ -60,6 +61,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
 
       return BaseResponseModel(
         data: TokenModel(token: response.user?.uid, expiration: expirationTime),
+        success: true,
       );
     } catch (e, stackTrace) {
       String? errorMessage;
@@ -68,7 +70,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       }
       errorMessage ??= 'Giriş Yapılamadı';
       setError(exception: e, stackTrace: stackTrace);
-      return BaseResponseModel(error: ErrorModel(errorMessage: errorMessage));
+      return BaseResponseModel(error: ErrorModel(errorMessage: errorMessage), success: false);
     }
   }
 

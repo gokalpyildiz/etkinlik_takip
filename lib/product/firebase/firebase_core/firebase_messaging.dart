@@ -19,7 +19,8 @@ class FbMessaging {
   Future<void> init() async {
     _fcm.requestPermission();
     const AndroidInitializationSettings androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const InitializationSettings initSettings = InitializationSettings(android: androidSettings);
+    const iosSettings = DarwinInitializationSettings();
+    const InitializationSettings initSettings = InitializationSettings(android: androidSettings, iOS: iosSettings);
     await _localNotifications.initialize(initSettings);
     //todo push notification modülü eklenince açılacak
     if (!Platform.isIOS) {
