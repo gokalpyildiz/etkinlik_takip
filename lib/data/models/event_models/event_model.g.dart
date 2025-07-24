@@ -13,7 +13,9 @@ class EventModelAdapter extends TypeAdapter<EventModel> {
   @override
   EventModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read()};
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
     return EventModel(
       title: fields[1] as String?,
       description: fields[2] as String?,
@@ -44,5 +46,8 @@ class EventModelAdapter extends TypeAdapter<EventModel> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is EventModelAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
+      identical(this, other) ||
+      other is EventModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

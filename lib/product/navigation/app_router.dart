@@ -16,6 +16,9 @@ class AppRoute {
   static const profile = 'profile';
   static const profileTab = 'profileTab';
 
+  //subroutes
+  static const eventDetail = 'eventDetail';
+
   static DuplicateGuard duplicateGuard = DuplicateGuard();
   static final _commonGuards = [duplicateGuard];
   static AutoRoute splashRoute = CustomRoute<void>(
@@ -38,6 +41,7 @@ class AppRoute {
         maintainState: true,
         children: [
           AutoRoute(path: home, page: HomeRoute.page, initial: true, guards: [..._commonGuards]),
+          AutoRoute(path: eventDetail, page: EventDetailRoute.page),
         ],
       ),
       AutoRoute(

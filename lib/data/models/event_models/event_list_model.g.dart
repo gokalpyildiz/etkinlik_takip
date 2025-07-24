@@ -13,8 +13,12 @@ class EventListModelAdapter extends TypeAdapter<EventListModel> {
   @override
   EventListModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read()};
-    return EventListModel(events: (fields[0] as List?)?.cast<EventModel>());
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return EventListModel(
+      events: (fields[0] as List?)?.cast<EventModel>(),
+    );
   }
 
   @override
@@ -30,5 +34,8 @@ class EventListModelAdapter extends TypeAdapter<EventListModel> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || other is EventListModelAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
+      identical(this, other) ||
+      other is EventListModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
