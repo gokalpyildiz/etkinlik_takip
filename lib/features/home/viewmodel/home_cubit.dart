@@ -2,9 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:etkinlik_takip/data/cache/cache_services/event_cache_service.dart';
 import 'package:etkinlik_takip/data/models/event_model.dart';
+import 'package:etkinlik_takip/data/services/connectivity_service/IConnectivityService.dart';
 import 'package:etkinlik_takip/data/services/event_service/IEventService.dart';
-import 'package:etkinlik_takip/data/services/event_service/event_firebase_service.dart';
-import 'package:etkinlik_takip/product/functions/connectivity_function.dart';
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:flutter/material.dart';
@@ -13,22 +12,16 @@ import 'package:flutter/rendering.dart';
 part 'home_state.dart';
 
 final class HomeCubit extends BaseCubit<HomeState> {
-  HomeCubit({required EventCacheService eventCacheFunc}) : super(HomeState()) {
-    _service = EventFirebaseService.init();
+  HomeCubit({required EventCacheService eventCacheFunc, required IEventService eventService, required IConnectivityService connectivityService})
+    : super(HomeState()) {
+    _service = eventService;
     scrollController = ScrollController();
-    _connectivityFunction = ConnectivityFunction();
+    _connectivityFunction = connectivityService;
     _eventCacheFunc = eventCacheFunc;
-    // Sayfanın altlarına gidildikçe tabbarın animasyonlu şekilde gizler
-    scrollController.addListener(() {
-      if (scrollController.positions.length > 1) {
-        scrollController.detach(scrollController.positions.first);
-      }
-      var isInnerScroll = scrollController.position.userScrollDirection == ScrollDirection.reverse;
-      ProductStateItems.dashboardCubit.setInnerScroll(isInnerScroll);
-    });
+    _setScrollListener();
   }
   late EventCacheService _eventCacheFunc;
-  late ConnectivityFunction _connectivityFunction;
+  late IConnectivityService _connectivityFunction;
   late IEventService _service;
   late ScrollController scrollController;
   List<EventModel> events = [];
@@ -72,5 +65,16 @@ final class HomeCubit extends BaseCubit<HomeState> {
       _setEventsWithCache(response?.data ?? []);
       events = response?.data ?? [];
     }
+  }
+
+  void _setScrollListener() {
+    // Sayfanın altlarına gidildikçe tabbarın animasyonlu şekilde gizler
+    scrollController.addListener(() {
+      if (scrollController.positions.length > 1) {
+        scrollController.detach(scrollController.positions.first);
+      }
+      var isInnerScroll = scrollController.position.userScrollDirection == ScrollDirection.reverse;
+      ProductStateItems.dashboardCubit.setInnerScroll(isInnerScroll);
+    });
   }
 }
