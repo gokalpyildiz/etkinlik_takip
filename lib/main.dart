@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: context.watch<ProductCubit>().state.themeMode,
         debugShowCheckedModeBanner: false,
         supportedLocales: AppLanguages.supportedCountryPhoneItems,
-        localizationsDelegates: [CountryLocalizations.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
       ),
     );
   }

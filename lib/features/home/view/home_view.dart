@@ -46,7 +46,6 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
               child: CustomScrollView(
                 controller: cubit.scrollController,
                 slivers: [
-                  ElevatedButton(child: Text('Yenile'), onPressed: () => cubit.refreshPage()).toSliver,
                   const SizedBox(height: 28).toSliver,
                   SliverList(
                     delegate: SliverChildListDelegate([

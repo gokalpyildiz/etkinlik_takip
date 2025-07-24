@@ -13,7 +13,7 @@ final class ApplicationStart {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
     await FbCore.instance.init();
-    await FbMessaging.instance.init();
+    FbMessaging.instance.init();
     await runZonedGuarded<Future<void>>(
       () async {
         await _initialize();

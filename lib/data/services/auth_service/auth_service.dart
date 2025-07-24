@@ -91,17 +91,9 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
     }
   }
 
-  Future<void> _updateUser({required String userId, String? name, String? email, String? password, String? phoneCountryCode, String? phone}) async {
+  Future<void> _updateUser({required String userId}) async {
     try {
-      await FirebaseCollections.users.reference.doc(userId).set({
-        'email': email,
-        'name': name,
-        'password': password,
-        'phone': phone,
-        'phoneCountryCode': phoneCountryCode,
-        'userId': userId,
-        'notificationToken': FbMessaging.fcmToken,
-      }, SetOptions(merge: true));
+      await FirebaseCollections.users.reference.doc(userId).set({'notificationToken': FbMessaging.fcmToken}, SetOptions(merge: true));
     } catch (e) {
       setError(exception: e.toString());
     }
