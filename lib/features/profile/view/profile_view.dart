@@ -4,7 +4,6 @@ import 'package:etkinlik_takip/product/extensions/widget_extension.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/widgets/base_widgets/my_scaffold.dart';
 import 'package:etkinlik_takip/product/widgets/common/text/my_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +45,12 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ),
                   Center(
-                    child: ElevatedButton(child: MyText('Cıkıs Yap'), onPressed: () => FirebaseAuth.instance.signOut()),
+                    child: ElevatedButton(
+                      child: MyText('Cıkıs Yap'),
+                      onPressed: () async {
+                        await cubit.signOut();
+                      },
+                    ),
                   ),
                 ],
               ),

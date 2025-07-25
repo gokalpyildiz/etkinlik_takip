@@ -5,4 +5,5 @@ import 'package:etkinlik_takip/data/models/token/token_model.dart';
 abstract class IAuthService {
   Future<BaseResponseModel<TokenModel>?> login({required String email, required String password});
   Future<BaseResponseModel<TokenModel>?> register({required RegisterRequestModel register});
+  Future<BaseResponseModel<bool>?> signOut();
 }

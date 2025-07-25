@@ -12,6 +12,7 @@
   <li><b>Etkinlik Listesi:</b> Firestore'dan etkinlikleri (başlık, açıklama, tarih) listeleme, sadece görüntüleme.</li>
   <li><b>Push Bildirim:</b> Firebase Cloud Messaging ile foreground/background bildirim alma.</li>
   <li><b>Offline Cache:</b> Son çekilen etkinlikler çevrimdışıyken gösterilir, online olunca otomatik güncellenir.</li>
+  <li><b>Test:</b> Homeview model unit testi.</li>
 </ul>
 
 <h2>Teknik Bilgiler</h2>
@@ -25,10 +26,15 @@
 
 <h2>Klasör Yapısı</h2>
 <pre>
+
+
 lib/
 ├── data/        # Modeller, servisler, cache
 ├── features/    # Ekranlar (auth, home, dashboard, profile)
 ├── product/     # Ortak bileşenler, tema, navigation, state, utility
 ├── main.dart    # Uygulama girişi
 </pre>
+
+https://github.com/user-attachments/assets/5f5f7c2a-836a-489c-a909-5581a434e6fc
+
 </html>

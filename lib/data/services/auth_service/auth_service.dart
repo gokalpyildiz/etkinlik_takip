@@ -98,4 +98,15 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
       setError(exception: e.toString());
     }
   }
+
+  @override
+  Future<BaseResponseModel<bool>?> signOut() async {
+    try {
+      await _auth.signOut();
+      return BaseResponseModel(data: true, success: true);
+    } catch (e) {
+      setError(exception: e.toString());
+      return BaseResponseModel(data: false, success: false);
+    }
+  }
 }
