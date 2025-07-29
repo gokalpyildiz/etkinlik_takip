@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:etkinlik_takip/data/cache/hive/constants/database_keys.dart';
 import 'package:etkinlik_takip/product/functions/route_function.dart';
+import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +25,14 @@ class FbMessaging {
     const iosSettings = DarwinInitializationSettings(requestAlertPermission: true, requestBadgePermission: true, requestSoundPermission: true);
     const InitializationSettings initSettings = InitializationSettings(android: androidSettings, iOS: iosSettings);
     await _localNotifications.initialize(initSettings, onDidReceiveNotificationResponse: _onNotificationTapped);
-    if (!Platform.isIOS) {
-      fcmToken = await _fcm.getToken();
-    } else {
-      fcmToken = await _fcm.getAPNSToken();
+    fcmToken = await ProductStateItems.productCache.stringCacheOperation.get(DatabaseKeys.STRING_FCM_TOKEN.value);
+    if (fcmToken != null) {
+      if (!Platform.isIOS) {
+        fcmToken = await _fcm.getToken();
+      } else {
+        fcmToken = await _fcm.getAPNSToken();
+      }
     }
-
     _fcm.onTokenRefresh.listen((newToken) async {
       fcmToken = newToken;
     });

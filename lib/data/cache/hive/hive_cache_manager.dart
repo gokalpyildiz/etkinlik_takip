@@ -56,6 +56,7 @@ final class HiveCacheManager extends CacheManager {
     try {
       await Hive.openBox<TokenModel>(HiveBoxNames.token.value, encryptionCipher: HiveAesCipher(encryptionKey));
       await Hive.openBox<EventListModel>(HiveBoxNames.eventList.value);
+      await Hive.openBox<String>(HiveBoxNames.string.value);
     } catch (e) {
       //TODO crash service implement
     }

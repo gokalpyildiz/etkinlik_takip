@@ -14,4 +14,5 @@ final class ProductCache {
 
   late final CacheOperation<TokenModel> tokenCacheOperation = HiveCacheOperation<TokenModel>(HiveBoxNames.token.value);
   late final CacheOperation<EventListModel> eventListCacheOperation = HiveCacheOperation<EventListModel>(HiveBoxNames.eventList.value);
+  late final CacheOperation<String> stringCacheOperation = HiveCacheOperation<String>(HiveBoxNames.string.value);
 }
