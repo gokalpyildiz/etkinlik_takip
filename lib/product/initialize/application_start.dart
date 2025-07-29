@@ -12,8 +12,6 @@ final class ApplicationStart {
   const ApplicationStart._();
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await FbCore.instance.init();
-    FbMessaging.instance.init();
     await runZonedGuarded<Future<void>>(
       () async {
         await _initialize();
@@ -28,5 +26,7 @@ final class ApplicationStart {
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     ProductContainer.setup();
     await ProductStateItems.productCache.init();
+    await FbCore.instance.init();
+    FbMessaging.instance.init();
   }
 }
