@@ -41,7 +41,7 @@ final class HomeCubit extends BaseCubit<HomeState> {
           //bağlantı yoktu ve bağlantı geldi ise sayfayı yenilemeli
         } else if (!hasConnection && response) {
           emit(state.copyWith(isLoading: true, showSuccesConnection: true));
-          await _getEventsWithCache();
+          await _setEvents();
           emit(state.copyWith(isLoading: false, showSuccesConnection: false));
         }
       });
