@@ -35,6 +35,8 @@ lib/
 ├── main.dart    # Uygulama girişi
 </pre>
 
-https://github.com/user-attachments/assets/5f5f7c2a-836a-489c-a909-5581a434e6fc
+
+https://github.com/user-attachments/assets/d15bc7ea-b346-46a9-8f4e-eb16cf8d791e
+
 
 </html>
