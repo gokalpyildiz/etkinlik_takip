@@ -2,7 +2,8 @@
 
 enum DatabaseKeys {
   TOKEN('token'),
-  EVENTS_MAIN('eventsmain');
+  EVENTS_MAIN('eventsmain'),
+  STRING_FCM_TOKEN('fcmtoken');
 
   final String value;
   const DatabaseKeys(this.value);
