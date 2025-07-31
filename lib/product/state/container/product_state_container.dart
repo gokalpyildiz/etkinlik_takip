@@ -1,8 +1,8 @@
 import 'package:etkinlik_takip/data/cache/cache_services/event_cache_service.dart';
 import 'package:etkinlik_takip/data/cache/hive/hive_cache_manager.dart';
 import 'package:etkinlik_takip/data/cache/product_cache.dart';
-import 'package:etkinlik_takip/data/services/connectivity_service/connectivity_service.dart';
-import 'package:etkinlik_takip/data/services/event_service/event_firebase_service.dart';
+import 'package:etkinlik_takip/data/services/core_services/connectivity_service/connectivity_service.dart';
+import 'package:etkinlik_takip/data/services/network/event_service/event_firebase_service.dart';
 import 'package:etkinlik_takip/features/dashboard/viewmodel/dashboard_cubit.dart';
 import 'package:etkinlik_takip/features/home/viewmodel/home_cubit.dart';
 import 'package:etkinlik_takip/features/profile/viewmodel/profile_cubit.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:etkinlik_takip/data/services/connectivity_service/IConnectivityService.dart';
+import 'package:etkinlik_takip/data/services/core_services/connectivity_service/IConnectivityService.dart';
 
 class ConnectivityMockService implements IConnectivityService {
   final StreamController<List<ConnectivityResult>> _controller = StreamController.broadcast();

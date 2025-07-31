@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:etkinlik_takip/data/services/auth_service/auth_service.dart';
+import 'package:etkinlik_takip/data/services/network/auth_service/auth_service.dart';
 import 'package:etkinlik_takip/product/enums/form_status_enum.dart';
 import 'package:etkinlik_takip/product/functions/auth_operation.dart';
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';

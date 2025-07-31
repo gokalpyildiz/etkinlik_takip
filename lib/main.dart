@@ -8,6 +8,7 @@ import 'package:etkinlik_takip/product/initialize/theme/custom_light_theme.dart'
 import 'package:etkinlik_takip/product/state/container/product_state_items.dart';
 import 'package:etkinlik_takip/product/state/viewmodel/product_cubit.dart';
 import 'package:etkinlik_takip/product/utility/project_manager.dart';
+import 'package:etkinlik_takip/product/widgets/base_widgets/error_handling/app_error_boundary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,17 +53,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: UiConstants.defaultSize,
-      child: MaterialApp.router(
-        routerConfig: ProductStateItems.appRouterHandler.config(),
-        theme: CustomLightTheme().themeData,
-        scaffoldMessengerKey: ProjectManager.scaffoldMessengerKey,
-        darkTheme: CustomDarkTheme().themeData,
-        themeMode: context.watch<ProductCubit>().state.themeMode,
-        debugShowCheckedModeBanner: false,
-        supportedLocales: AppLanguages.supportedCountryPhoneItems,
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+    return AppErrorBoundary(
+      child: ScreenUtilInit(
+        designSize: UiConstants.defaultSize,
+        child: MaterialApp.router(
+          routerConfig: ProductStateItems.appRouterHandler.config(),
+          theme: CustomLightTheme().themeData,
+          scaffoldMessengerKey: ProjectManager.scaffoldMessengerKey,
+          darkTheme: CustomDarkTheme().themeData,
+          themeMode: context.watch<ProductCubit>().state.themeMode,
+          debugShowCheckedModeBanner: false,
+          supportedLocales: AppLanguages.supportedCountryPhoneItems,
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        ),
       ),
     );
   }

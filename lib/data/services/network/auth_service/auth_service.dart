@@ -2,8 +2,8 @@ import 'package:etkinlik_takip/data/models/auth_models/register_request_model.da
 import 'package:etkinlik_takip/data/models/base_models/base_response_model.dart';
 import 'package:etkinlik_takip/data/models/base_models/error_model.dart';
 import 'package:etkinlik_takip/data/models/token/token_model.dart';
-import 'package:etkinlik_takip/data/services/auth_service/IAuthService.dart';
-import 'package:etkinlik_takip/data/services/base_services/IFirebaseBaseService.dart';
+import 'package:etkinlik_takip/data/services/network/auth_service/IAuthService.dart';
+import 'package:etkinlik_takip/data/services/network/base_services/IFirebaseBaseService.dart';
 import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_messaging.dart';
 import 'package:etkinlik_takip/product/functions/error_message_function.dart';
 import 'package:etkinlik_takip/product/utility/firebase/firebase_collections.dart';
