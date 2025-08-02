@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyText extends StatelessWidget {
@@ -10,6 +11,7 @@ class MyText extends StatelessWidget {
   final TextOverflow? overflow;
   final int? maxLines;
   final TextDecoration? decoration;
+  final bool isAnimated;
 
   const MyText(
     this.text, {
@@ -21,6 +23,7 @@ class MyText extends StatelessWidget {
     this.overflow,
     this.maxLines,
     this.decoration,
+    this.isAnimated = false,
   });
 
   const MyText.displayLarge(
@@ -33,10 +36,19 @@ class MyText extends StatelessWidget {
     this.overflow,
     this.maxLines,
     this.decoration,
+    this.isAnimated = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (isAnimated) {
+      return _text().animate().fade().scale();
+    } else {
+      return _text();
+    }
+  }
+
+  Text _text() {
     return Text(
       text ?? '*null*',
       style: TextStyle(decoration: decoration, fontSize: fontSize.sp, color: color, fontWeight: fontWeight),

@@ -64,7 +64,7 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
                         color: context.colorScheme.secondaryContainer,
                         child: Padding(
                           padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-                          child: Align(alignment: AlignmentDirectional.center, child: const MyText.displayLarge('Etkinlikler')),
+                          child: Align(alignment: AlignmentDirectional.center, child: const MyText.displayLarge('Etkinlikler', isAnimated: true)),
                         ),
                       ),
                     ),

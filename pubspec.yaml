@@ -54,6 +54,7 @@ dependencies:
   shimmer: ^3.0.0
   logger: ^2.6.1
   firebase_analytics: ^11.6.0
+  flutter_animate: ^4.5.2
 
 
 
