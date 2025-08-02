@@ -9,11 +9,11 @@ class AuthNavigationObserver extends AutoRouteGuard {
   @override
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    var isExpired = await AuthOperation.instance.tokenIsExpire();
+    final isExpired = await AuthOperation.instance.tokenIsExpire();
     if (_allowedPages.contains(resolver.route.name) && !isExpired) {
       resolver.next(true);
     } else {
-      router.replaceAll([LoginRoute()]);
+      await router.replaceAll([LoginRoute()]);
     }
   }
 }

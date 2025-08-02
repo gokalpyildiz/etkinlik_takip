@@ -29,11 +29,11 @@ class AppLogger {
     enrichedData = {'timestamp': DateTime.now().toIso8601String(), 'userId': user?.userId, ...?metadata};
 
     _logger.i('USER_ACTION: $action $enrichedData');
-    _analyticsCrashlytics.trackEvent(action, enrichedData);
+    await _analyticsCrashlytics.trackEvent(action, enrichedData);
   }
 
   static Future<void> logError({required dynamic exception, String? message, StackTrace? stackTrace, List<String>? informationList}) async {
-    var userId = (await AuthOperation.instance.getTokenModel)?.userId;
+    final userId = (await AuthOperation.instance.getTokenModel)?.userId;
     final errorData = {
       'message': message,
       'error': exception.toString(),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:country_code_picker/country_code_picker.dart';
@@ -12,13 +13,13 @@ import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends BaseCubit<RegisterState> {
-  RegisterCubit() : super(RegisterState());
+  RegisterCubit() : super(const RegisterState());
 
   late IAuthService _service;
 
   Future<void> init() async {
     _service = AuthService.init();
-    Locale locale = PlatformDispatcher.instance.locale;
+    final Locale locale = PlatformDispatcher.instance.locale;
     if (locale.countryCode != null) countryCode = CountryCode.fromCountryCode(locale.countryCode!);
   }
 
@@ -41,17 +42,17 @@ class RegisterCubit extends BaseCubit<RegisterState> {
     emit(state.copyWith(formStatus: FormStatusEnum.loading));
     phone = phone?.replaceAll(' ', '');
     register = register.copyWith(phone: phone);
-    var response = await _service.register(register: register);
+    final response = await _service.register(register: register);
     if (response?.data != null) {
       if (response?.data?.token == null) {
         errorMessage = response?.error?.errorMessage ?? 'Hesap oluşturulurken bir hata oluştu';
         emit(state.copyWith(formStatus: FormStatusEnum.failure));
         return;
       }
-      var value = response?.data;
+      final value = response?.data;
       if (value is TokenModel) {
         if (value.token != null) {
-          AuthOperation.instance.setToken(value);
+          unawaited(AuthOperation.instance.setToken(value));
           emit(state.copyWith(formStatus: FormStatusEnum.success));
         }
       }

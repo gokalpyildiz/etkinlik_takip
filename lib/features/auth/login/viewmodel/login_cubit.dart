@@ -20,7 +20,7 @@ class LoginCubit extends BaseCubit<LoginState> {
   Future<bool> login({required String email, required String password}) async {
     errorMessage = null;
     emit(state.copyWith(formStatus: FormStatusEnum.loading));
-    var response = await _service.login(email: email, password: password);
+    final response = await _service.login(email: email, password: password);
     if (response?.data?.token != null) {
       await AuthOperation.instance.setToken(response!.data!);
       emit(state.copyWith(formStatus: FormStatusEnum.success));

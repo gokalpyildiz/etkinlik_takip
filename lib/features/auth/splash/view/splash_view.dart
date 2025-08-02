@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:etkinlik_takip/product/functions/auth_operation.dart';
 import 'package:etkinlik_takip/product/navigation/auto_route_handler.gr.dart';
@@ -26,10 +28,10 @@ class _SplashViewState extends State<SplashView> {
     final tokenIsExpire = await AuthOperation.instance.tokenIsExpire();
     if (!mounted) return;
     if (tokenIsExpire) {
-      context.router.replace(LoginRoute());
+      unawaited(context.router.replace(LoginRoute()));
     } else {
-      ProductStateItems.productCubit.refreshBottomVies();
-      context.router.replace(DashBoardRoute());
+      unawaited(ProductStateItems.productCubit.refreshBottomVies());
+      unawaited(context.router.replace(const DashBoardRoute()));
     }
   }
 
@@ -41,7 +43,7 @@ class _SplashViewState extends State<SplashView> {
           onPressed: () {
             context.router.replace(LoginRoute());
           },
-          child: Text('Start App'),
+          child: const Text('Start App'),
         ),
       ),
     );

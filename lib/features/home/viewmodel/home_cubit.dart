@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:etkinlik_takip/data/cache/cache_services/event_cache_service.dart';
@@ -13,7 +15,7 @@ part 'home_state.dart';
 
 final class HomeCubit extends BaseCubit<HomeState> {
   HomeCubit({required EventCacheService eventCacheFunc, required IEventService eventService, required IConnectivityService connectivityService})
-    : super(HomeState()) {
+    : super(const HomeState()) {
     _service = eventService;
     scrollController = ScrollController();
     _connectivityFunction = connectivityService;
@@ -60,9 +62,9 @@ final class HomeCubit extends BaseCubit<HomeState> {
   }
 
   Future<void> _setEvents() async {
-    var response = await _service.getEvents();
+    final response = await _service.getEvents();
     if (response?.data != null) {
-      _setEventsWithCache(response?.data ?? []);
+      unawaited(_setEventsWithCache(response?.data ?? []));
       events = response?.data ?? [];
     }
   }
@@ -73,7 +75,7 @@ final class HomeCubit extends BaseCubit<HomeState> {
       if (scrollController.positions.length > 1) {
         scrollController.detach(scrollController.positions.first);
       }
-      var isInnerScroll = scrollController.position.userScrollDirection == ScrollDirection.reverse;
+      final isInnerScroll = scrollController.position.userScrollDirection == ScrollDirection.reverse;
       ProductStateItems.dashboardCubit.setInnerScroll(isInnerScroll);
     });
   }

@@ -10,7 +10,7 @@ class EventCacheService {
   late CacheOperation<EventListModel> _eventListCacheOperation;
 
   Future<EventListModel?> getEvents() async {
-    var cacheEvents = await _eventListCacheOperation.get(DatabaseKeys.EVENTS_MAIN.value);
+    final cacheEvents = await _eventListCacheOperation.get(DatabaseKeys.EVENTS_MAIN.value);
     return cacheEvents;
   }
 

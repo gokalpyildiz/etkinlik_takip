@@ -7,7 +7,7 @@ import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 part 'event_detail_state.dart';
 
 class EventDetailCubit extends BaseCubit<EventDetailState> {
-  EventDetailCubit(this.eventId) : super(EventDetailState()) {
+  EventDetailCubit(this.eventId) : super(const EventDetailState()) {
     _service = EventFirebaseService.init();
     _init();
   }

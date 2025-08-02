@@ -28,6 +28,6 @@ final class ApplicationStart {
     ProductContainer.setup();
     await ProductStateItems.productCache.init();
     await FbCore.instance.init();
-    FbMessaging.instance.init();
+    unawaited(FbMessaging.instance.init());
   }
 }

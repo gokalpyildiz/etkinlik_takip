@@ -23,8 +23,8 @@ class EventDetailView extends StatelessWidget {
         child: BlocBuilder<EventDetailCubit, EventDetailState>(
           builder: (context, state) {
             final cubit = context.read<EventDetailCubit>();
-            if (state.isLoading) return Center(child: const CircularProgressIndicator());
-            if (cubit.event == null) return Center(child: const Text('Etkinlik Bulunamadı'));
+            if (state.isLoading) return const Center(child: CircularProgressIndicator());
+            if (cubit.event == null) return const Center(child: Text('Etkinlik Bulunamadı'));
             final event = cubit.event;
             return Padding(
               padding: const ProjectPadding.pageContentPadding(),

@@ -48,7 +48,7 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
           }
         },
         builder: (context, state) {
-          if (state.isLoading) return HomeShimmer();
+          if (state.isLoading) return const HomeShimmer();
           return PopScope(
             canPop: false,
             child: MyScaffold(
@@ -64,7 +64,7 @@ class _HomeViewState extends BaseState<HomeView> with SingleTickerProviderStateM
                         color: context.colorScheme.secondaryContainer,
                         child: Padding(
                           padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-                          child: Align(alignment: AlignmentDirectional.center, child: const MyText.displayLarge('Etkinlikler', isAnimated: true)),
+                          child: const Align(alignment: AlignmentDirectional.center, child: MyText.displayLarge('Etkinlikler', isAnimated: true)),
                         ),
                       ),
                     ),

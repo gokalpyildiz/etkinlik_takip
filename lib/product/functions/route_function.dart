@@ -8,7 +8,7 @@ class RouteFunction {
   static RouteFunction get instance => _instance;
 
   bool navigateToDetail(String detailId) {
-    var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
+    final currentUrl = ProductStateItems.appRouterHandler.currentUrl;
     final blocNavigate = currentUrl == AppRoute.splash || currentUrl == AppRoute.login || currentUrl == AppRoute.register || currentUrl == '/';
     if (!blocNavigate) {
       ProductStateItems.appRouterHandler.push(EventDetailRoute(eventId: detailId));

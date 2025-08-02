@@ -22,7 +22,7 @@ class CrashlyticsService {
 
   void setError({required dynamic exception, StackTrace? stackTrace, List<String>? informationList, String? apiUrl, String? message}) {
     if (kDebugMode) return;
-    var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
+    final currentUrl = ProductStateItems.appRouterHandler.currentUrl;
     message ??= exception.response?.data.toString();
     firebaseCrashlytics.recordError(
       exception,

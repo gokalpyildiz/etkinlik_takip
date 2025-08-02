@@ -20,7 +20,7 @@ class FbMessaging {
   final FlutterLocalNotificationsPlugin _localNotifications = FlutterLocalNotificationsPlugin();
 
   Future<void> init() async {
-    _fcm.requestPermission();
+    await _fcm.requestPermission();
     const AndroidInitializationSettings androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosSettings = DarwinInitializationSettings(requestAlertPermission: true, requestBadgePermission: true, requestSoundPermission: true);
     const InitializationSettings initSettings = InitializationSettings(android: androidSettings, iOS: iosSettings);
@@ -45,7 +45,7 @@ class FbMessaging {
     // Uygulama ön plandayken notification görünmesini sağlar
     await _fcm.setForegroundNotificationPresentationOptions(alert: true, badge: true, sound: true);
     // Uygulama kapalıyken notification ile açılırsa
-    _fcm.getInitialMessage().then(_getInitialMessage);
+    await _fcm.getInitialMessage().then(_getInitialMessage);
   }
 
   @pragma('vm:entry-point')
@@ -84,7 +84,7 @@ class FbMessaging {
       priority: Priority.high,
     );
     const NotificationDetails details = NotificationDetails(android: androidDetails);
-    var notification = message.notification;
+    final notification = message.notification;
     await _localNotifications.show(notification.hashCode, notification?.title, notification?.body, details, payload: message.data['detailId']);
   }
 
@@ -96,7 +96,7 @@ class FbMessaging {
 
   void _navigateDetail(String? value) {
     if (value == null) return;
-    var response = _routeFunction.navigateToDetail(value);
+    final response = _routeFunction.navigateToDetail(value);
     if (!response) {
       _pendingNotificationData = value;
     }

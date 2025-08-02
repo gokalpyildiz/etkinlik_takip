@@ -17,7 +17,7 @@ class DashBoardView extends StatefulWidget {
 class _DashBoardViewState extends State<DashBoardView> {
   @override
   Widget build(BuildContext context) {
-    var activeColor = context.colorScheme.secondary;
+    final activeColor = context.colorScheme.secondary;
     return BlocProvider.value(
       value: ProductStateItems.dashboardCubit,
       child: BlocBuilder<DashboardCubit, DashboardState>(

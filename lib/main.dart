@@ -41,9 +41,9 @@ class _MyAppState extends State<MyApp> {
       if (user == null) {
         AuthOperation.instance.routeLogin();
       } else {
-        var idTokenResult = await user.getIdTokenResult();
-        var date = idTokenResult.expirationTime;
-        var isExpired = date!.isBefore(DateTime.now());
+        final idTokenResult = await user.getIdTokenResult();
+        final date = idTokenResult.expirationTime;
+        final isExpired = date!.isBefore(DateTime.now());
         if (isExpired) {
           AuthOperation.instance.routeLogin();
         }

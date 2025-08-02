@@ -74,5 +74,5 @@ final class CustomColorScheme {
 }
 
 extension CustomColorSchemeExtension on ColorScheme {
-  Color get success => Color.fromRGBO(35, 193, 107, 1);
+  Color get success => const Color.fromRGBO(35, 193, 107, 1);
 }

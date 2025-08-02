@@ -112,14 +112,14 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                         _isObscure = !_isObscure;
                         setState(() {});
                       },
-                      icon: Icon(Icons.visibility_off),
+                      icon: const Icon(Icons.visibility_off),
                     )
                   : IconButton(
                       onPressed: () {
                         _isObscure = !_isObscure;
                         setState(() {});
                       },
-                      icon: Icon(Icons.visibility),
+                      icon: const Icon(Icons.visibility),
                     ))
             : null,
         prefix: widget.prefix,

@@ -18,7 +18,7 @@ class AuthOperation {
 
   Future<void> setToken(TokenModel token) async {
     await _tokenCache.add(key: DatabaseKeys.TOKEN.value, item: token);
-    startControlToken();
+    unawaited(startControlToken());
   }
 
   void clear() {
@@ -29,7 +29,7 @@ class AuthOperation {
   Future<TokenModel?> get getTokenModel async => (await _tokenCache.get(DatabaseKeys.TOKEN.value));
 
   Future<String?> getToken() async {
-    var tokenModel = await _tokenCache.get(DatabaseKeys.TOKEN.value);
+    final tokenModel = await _tokenCache.get(DatabaseKeys.TOKEN.value);
     final isExpire = tokenModel?.expiration?.isBefore(DateTime.now());
     if (isExpire ?? true) {
       return null;
@@ -38,7 +38,7 @@ class AuthOperation {
   }
 
   Future<bool> tokenIsExpire() async {
-    var tokenModel = await _tokenCache.get(DatabaseKeys.TOKEN.value);
+    final tokenModel = await _tokenCache.get(DatabaseKeys.TOKEN.value);
     final isExpire = tokenModel?.expiration?.isBefore(DateTime.now());
     return isExpire ?? true;
   }
@@ -67,7 +67,7 @@ class AuthOperation {
   }
 
   void routeLogin() {
-    var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
+    final currentUrl = ProductStateItems.appRouterHandler.currentUrl;
     final isAllowForGuest = currentUrl == AppRoute.splash || currentUrl == AppRoute.login || currentUrl == AppRoute.register || currentUrl == '/';
     if (!isAllowForGuest) {
       ProductStateItems.appRouterHandler.replaceAll([LoginRoute()]);

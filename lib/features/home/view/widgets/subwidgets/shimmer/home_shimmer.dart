@@ -21,9 +21,9 @@ class HomeShimmer extends StatelessWidget {
 
   List<Widget> buildShimmerList() => List.generate(
     10,
-    (index) => Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: const TitlePlaceholder(width: double.infinity, height: 32),
+    (index) => const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: TitlePlaceholder(width: double.infinity, height: 32),
     ),
   );
 }

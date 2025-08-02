@@ -46,7 +46,7 @@ class _RegisterPhone extends StatelessWidget {
               },
               dialogSize: const Size(300, 400),
             ),
-            Icon(Icons.arrow_drop_up),
+            const Icon(Icons.arrow_drop_up),
           ],
         ),
       ),

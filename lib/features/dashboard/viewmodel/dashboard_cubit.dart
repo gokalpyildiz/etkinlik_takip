@@ -4,7 +4,7 @@ import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 part 'dashboard_state.dart';
 
 class DashboardCubit extends BaseCubit<DashboardState> {
-  DashboardCubit() : super(DashboardState());
+  DashboardCubit() : super(const DashboardState());
   //sayfa scroll olduğunda tabbarı gizler
   void setInnerScroll(bool isInnerScroll) {
     if (state.isInnerScrool == isInnerScroll) return;

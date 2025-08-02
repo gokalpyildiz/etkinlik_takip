@@ -23,14 +23,14 @@ class _ProfileViewState extends State<ProfileView> {
       value: cubit,
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
-          if (state.isLoading) return CircularProgressIndicator();
+          if (state.isLoading) return const CircularProgressIndicator();
           final user = cubit.userModel;
           final nameSurname = '${user?.name ?? ''}  ${user?.surname ?? ''}';
           final email = user?.email ?? '';
           final phone = (user?.phoneCountryCode ?? '') + (user?.phone ?? '');
           final notfcId = user?.notificationToken;
           return MyScaffold(
-            appBar: AppBar(title: MyText('Profil')),
+            appBar: AppBar(title: const MyText('Profil')),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -46,7 +46,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   Center(
                     child: ElevatedButton(
-                      child: MyText('Cıkıs Yap'),
+                      child: const MyText('Cıkıs Yap'),
                       onPressed: () async {
                         await cubit.signOut();
                       },

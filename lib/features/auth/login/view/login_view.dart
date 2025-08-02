@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:etkinlik_takip/features/auth/login/view/mixin/login_view_mixin.dart';
 import 'package:etkinlik_takip/features/auth/login/viewmodel/login_cubit.dart';
@@ -40,7 +42,7 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
           FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
         } else if (state.formStatus == FormStatusEnum.success) {
           FlutterToast.showSuccessful(context, title: 'Giriş Başarılı');
-          context.router.replaceAll([DashBoardRoute()]);
+          context.router.replaceAll([const DashBoardRoute()]);
           ProductStateItems.productCubit.refreshBottomVies();
         }
       },
@@ -50,7 +52,7 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
         child: MyScaffold(
           appBar: AppBar(),
           child: Container(
-            padding: ProjectPadding.pageContentPadding(),
+            padding: const ProjectPadding.pageContentPadding(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

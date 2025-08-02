@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:etkinlik_takip/data/models/auth_models/register_request_model.dart';
 import 'package:etkinlik_takip/data/models/base_models/base_response_model.dart';
 import 'package:etkinlik_takip/data/models/base_models/error_model.dart';
@@ -19,7 +21,7 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
   Future<BaseResponseModel<TokenModel>?> register({required RegisterRequestModel register}) async {
     try {
       if (register.email == null || register.password == null) {
-        return BaseResponseModel(error: ErrorModel(errorMessage: 'Lütfen tüm alanları doldurunuz'), success: false);
+        return BaseResponseModel(error: const ErrorModel(errorMessage: 'Lütfen tüm alanları doldurunuz'), success: false);
       }
       final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: register.email!, password: register.password!);
       if (userCredential.user != null) {
@@ -32,8 +34,8 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
           phoneCountryCode: register.phoneCountryCode,
         );
       }
-      var idTokenResult = await userCredential.user?.getIdTokenResult();
-      var expirationTime = idTokenResult?.expirationTime;
+      final idTokenResult = await userCredential.user?.getIdTokenResult();
+      final expirationTime = idTokenResult?.expirationTime;
       return BaseResponseModel(
         data: TokenModel(token: userCredential.user?.uid, expiration: expirationTime),
         success: true,
@@ -53,10 +55,10 @@ class AuthService extends IFirebaseBaseService implements IAuthService {
   Future<BaseResponseModel<TokenModel>?> login({required String email, required String password}) async {
     try {
       final response = await _auth.signInWithEmailAndPassword(email: email, password: password);
-      var idTokenResult = await response.user?.getIdTokenResult();
-      var expirationTime = idTokenResult?.expirationTime;
+      final idTokenResult = await response.user?.getIdTokenResult();
+      final expirationTime = idTokenResult?.expirationTime;
       if (response.user != null) {
-        _updateUser(userId: response.user!.uid);
+        unawaited(_updateUser(userId: response.user!.uid));
       }
 
       return BaseResponseModel(

@@ -8,8 +8,8 @@ class _LoginButton extends StatelessWidget {
   final TextEditingController passwordController;
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<LoginCubit>();
-    var watch = context.watch<LoginCubit>();
+    final cubit = context.read<LoginCubit>();
+    final watch = context.watch<LoginCubit>();
     return ElevatedButton(
       style: ButtonStyle(backgroundColor: WidgetStateProperty.all(context.appTheme.colorScheme.primary)),
       child: SizedBox(
@@ -27,10 +27,10 @@ class _LoginButton extends StatelessWidget {
         if (!(formKey.currentState?.validate() ?? false)) {
           changeAutoValidateMode(AutovalidateMode.always);
         } else {
-          var response = await cubit.login(email: emailController.text, password: passwordController.text);
+          final response = await cubit.login(email: emailController.text, password: passwordController.text);
           if (response) {
             TextInput.finishAutofillContext();
-            ProductStateItems.productCubit.refreshBottomVies();
+            unawaited(ProductStateItems.productCubit.refreshBottomVies());
             if (context.mounted) {
               await context.router.maybePop(true);
             }

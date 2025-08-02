@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 part 'profile_state.dart';
 
 class ProfileCubit extends BaseCubit<ProfileState> {
-  ProfileCubit() : super(ProfileState()) {
+  ProfileCubit() : super(const ProfileState()) {
     _service = AuthService.init();
   }
   User? user;
@@ -21,7 +21,7 @@ class ProfileCubit extends BaseCubit<ProfileState> {
     emit(state.copyWith(isLoading: true));
     try {
       user = FirebaseAuth.instance.currentUser;
-      var docSnapshot = await FirebaseCollections.users.reference.doc(user?.uid).get();
+      final docSnapshot = await FirebaseCollections.users.reference.doc(user?.uid).get();
       if (docSnapshot.exists) {
         userModel = UserModel.fromFirestore(docSnapshot);
       }
@@ -32,7 +32,7 @@ class ProfileCubit extends BaseCubit<ProfileState> {
   }
 
   Future<bool> signOut() async {
-    var response = await _service.signOut();
+    final response = await _service.signOut();
     if (response?.success ?? false) {
       AuthOperation.instance.clear();
       return true;
