@@ -1,5 +1,5 @@
+import 'package:etkinlik_takip/data/services/core_services/crash_reporting/crashlytics_service.dart';
 import 'package:etkinlik_takip/firebase_options.dart';
-import 'package:etkinlik_takip/product/firebase/crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class FbCore {

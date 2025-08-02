@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:etkinlik_takip/data/models/event_models/event_model.dart';
-import 'package:etkinlik_takip/data/services/event_service/IEventService.dart';
-import 'package:etkinlik_takip/data/services/event_service/event_firebase_service.dart';
+import 'package:etkinlik_takip/data/services/network/event_service/IEventService.dart';
+import 'package:etkinlik_takip/data/services/network/event_service/event_firebase_service.dart';
 import 'package:etkinlik_takip/product/state/base/base_cubit.dart';
 
 part 'event_detail_state.dart';

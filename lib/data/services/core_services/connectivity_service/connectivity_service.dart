@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:etkinlik_takip/data/services/connectivity_service/IConnectivityService.dart';
+import 'package:etkinlik_takip/data/services/core_services/connectivity_service/IConnectivityService.dart';
 
 class ConnectivityService extends IConnectivityService {
   static final ConnectivityService _instance = ConnectivityService._internal();

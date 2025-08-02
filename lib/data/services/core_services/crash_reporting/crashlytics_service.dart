@@ -20,14 +20,14 @@ class CrashlyticsService {
     };
   }
 
-  void setError({required dynamic exception, StackTrace? stackTrace, List<String>? list, String? apiUrl, String? message}) {
+  void setError({required dynamic exception, StackTrace? stackTrace, List<String>? informationList, String? apiUrl, String? message}) {
     if (kDebugMode) return;
     var currentUrl = ProductStateItems.appRouterHandler.currentUrl;
     message ??= exception.response?.data.toString();
     firebaseCrashlytics.recordError(
       exception,
       stackTrace,
-      information: list?.map(DiagnosticsNode.message) ?? [],
+      information: informationList?.map(DiagnosticsNode.message) ?? [],
       printDetails: true,
       reason:
           'Hatanın meydana geldiği anda bulunulan sayfa: $currentUrl \n Hatanın meydana geldiği api: $apiUrl \n Hatanın meydana geldiği mesaj: $message',
