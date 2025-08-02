@@ -37,6 +37,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   border: Border(top: BorderSide(color: context.colorScheme.surfaceContainer)),
                 ),
                 child: BottomNavigationBar(
+                  backgroundColor: context.colorScheme.secondaryContainer,
                   currentIndex: tabsRouter.activeIndex,
                   onTap: (value) async {
                     context.tabsRouter.setActiveIndex(value);

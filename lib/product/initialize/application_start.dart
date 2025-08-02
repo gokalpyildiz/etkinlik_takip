@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:etkinlik_takip/data/services/core_services/crash_reporting/crashlytics_service.dart';
 import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_core.dart';
 import 'package:etkinlik_takip/product/firebase/firebase_core/firebase_messaging.dart';
 import 'package:etkinlik_takip/product/state/container/product_state_container.dart';
@@ -17,7 +18,7 @@ final class ApplicationStart {
         await _initialize();
       },
       (error, stack) {
-        //todo crash service implement
+        CrashlyticsService.instance.setError(exception: error, stackTrace: stack, message: 'RunzonedGuarded error');
       },
     );
   }

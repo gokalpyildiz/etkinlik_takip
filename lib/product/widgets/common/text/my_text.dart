@@ -23,6 +23,18 @@ class MyText extends StatelessWidget {
     this.decoration,
   });
 
+  const MyText.displayLarge(
+    this.text, {
+    super.key,
+    this.color,
+    this.fontSize = 18.0,
+    this.fontWeight = FontWeight.w600,
+    this.textAlign = TextAlign.left,
+    this.overflow,
+    this.maxLines,
+    this.decoration,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Text(
