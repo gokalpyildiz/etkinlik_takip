@@ -3,16 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyText extends StatelessWidget {
-  final String? text;
-  final Color? color;
-  final double fontSize;
-  final FontWeight? fontWeight;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final TextDecoration? decoration;
-  final bool isAnimated;
-
   const MyText(
     this.text, {
     super.key,
@@ -38,6 +28,15 @@ class MyText extends StatelessWidget {
     this.decoration,
     this.isAnimated = false,
   });
+  final String? text;
+  final Color? color;
+  final double fontSize;
+  final FontWeight? fontWeight;
+  final TextAlign? textAlign;
+  final TextOverflow? overflow;
+  final int? maxLines;
+  final TextDecoration? decoration;
+  final bool isAnimated;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +47,12 @@ class MyText extends StatelessWidget {
     }
   }
 
-  Text _text() {
-    return Text(
-      text ?? '*null*',
-      style: TextStyle(decoration: decoration, fontSize: fontSize.sp, color: color, fontWeight: fontWeight),
-      overflow: overflow,
-      maxLines: maxLines,
-      textAlign: textAlign,
-      softWrap: true,
-    );
-  }
+  Text _text() => Text(
+    text ?? '*null*',
+    style: TextStyle(decoration: decoration, fontSize: fontSize.sp, color: color, fontWeight: fontWeight),
+    overflow: overflow,
+    maxLines: maxLines,
+    textAlign: textAlign,
+    softWrap: true,
+  );
 }

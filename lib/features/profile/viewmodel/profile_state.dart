@@ -7,7 +7,5 @@ class ProfileState extends Equatable {
   @override
   List<Object> get props => [isLoading];
 
-  ProfileState copyWith({bool? isLoading}) {
-    return ProfileState(isLoading: isLoading ?? this.isLoading);
-  }
+  ProfileState copyWith({bool? isLoading}) => ProfileState(isLoading: isLoading ?? this.isLoading);
 }

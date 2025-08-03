@@ -80,9 +80,7 @@ class _LoginViewState extends BaseState<LoginView> with LoginViewMixin {
                   controller: passwordController,
                   autofillHints: const [AutofillHints.password],
                   inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r' '))],
-                  validator: (value) {
-                    return (value?.length ?? 0) >= 6 ? null : 'Parolanız en az 6 karakter olmalıdır';
-                  },
+                  validator: (value) => (value?.length ?? 0) >= 6 ? null : 'Parolanız en az 6 karakter olmalıdır',
                 ),
                 const SizedBox(height: 16),
                 InkWell(

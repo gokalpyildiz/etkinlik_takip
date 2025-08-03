@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StorytellingProgressIndicator extends StatefulWidget {
+  const StorytellingProgressIndicator({super.key, required this.progress, required this.storySteps});
   final double progress;
   final List<String> storySteps;
-
-  const StorytellingProgressIndicator({super.key, required this.progress, required this.storySteps});
 
   @override
   State<StorytellingProgressIndicator> createState() => _StorytellingProgressIndicatorState();

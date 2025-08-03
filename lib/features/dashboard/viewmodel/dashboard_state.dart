@@ -9,13 +9,6 @@ class DashboardState extends Equatable {
   @override
   List<Object> get props => [isInnerScrool, isRefreshingTabbar];
 
-  DashboardState copyWith({
-    bool? isInnerScrool,
-    bool? isRefreshingTabbar,
-  }) {
-    return DashboardState(
-      isInnerScrool: isInnerScrool ?? this.isInnerScrool,
-      isRefreshingTabbar: isRefreshingTabbar ?? this.isRefreshingTabbar,
-    );
-  }
+  DashboardState copyWith({bool? isInnerScrool, bool? isRefreshingTabbar}) =>
+      DashboardState(isInnerScrool: isInnerScrool ?? this.isInnerScrool, isRefreshingTabbar: isRefreshingTabbar ?? this.isRefreshingTabbar);
 }

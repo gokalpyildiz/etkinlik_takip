@@ -9,17 +9,13 @@ class EventsCacheMock extends CacheOperation<EventListModel> {
   }
 
   @override
-  Future<EventListModel?> get(String key) async {
-    return _events.firstOrNull;
-  }
+  Future<EventListModel?> get(String key) async => _events.firstOrNull;
 
   @override
   Future<void> clear() async {}
 
   @override
-  Future<List<EventListModel>?> getAll() async {
-    return _events;
-  }
+  Future<List<EventListModel>?> getAll() async => _events;
 
   @override
   Future<void> insert({required EventListModel item}) async {}

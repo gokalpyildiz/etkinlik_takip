@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:etkinlik_takip/product/log/app_logger.dart';
 
 class AppErrorBoundary extends StatefulWidget {
-  final Widget child;
-
   const AppErrorBoundary({super.key, required this.child});
+  final Widget child;
 
   @override
   State<AppErrorBoundary> createState() => _AppErrorBoundaryState();
@@ -36,7 +35,5 @@ class _AppErrorBoundaryState extends State<AppErrorBoundary> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return widget.child;
-  }
+  Widget build(BuildContext context) => widget.child;
 }

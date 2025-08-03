@@ -26,24 +26,22 @@ class _RegisterPhone extends StatelessWidget {
               onChanged: (value) {
                 cubit.countryCode = value;
               },
-              builder: (country) {
-                return Row(
-                  children: [
-                    if (country?.flagUri != null)
-                      Image.asset(
-                        country!.flagUri!,
-                        package: 'country_code_picker',
-                        width: 20,
-                        height: 16,
-                        // width: country.flagWidth,
-                      ),
-                    const SizedBox(width: 4),
-                    Text(country?.name ?? ''),
-                    //Text('Azərbaycan'),
-                    const SizedBox(width: 4),
-                  ],
-                );
-              },
+              builder: (country) => Row(
+                children: [
+                  if (country?.flagUri != null)
+                    Image.asset(
+                      country!.flagUri!,
+                      package: 'country_code_picker',
+                      width: 20,
+                      height: 16,
+                      // width: country.flagWidth,
+                    ),
+                  const SizedBox(width: 4),
+                  Text(country?.name ?? ''),
+                  //Text('Azərbaycan'),
+                  const SizedBox(width: 4),
+                ],
+              ),
               dialogSize: const Size(300, 400),
             ),
             const Icon(Icons.arrow_drop_up),

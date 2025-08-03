@@ -16,14 +16,7 @@ class EventFirebaseService extends IFirebaseBaseService implements IEventService
       final collections = FirebaseCollections.events;
       final newsCollectionReference = collections.reference;
       final response = await newsCollectionReference
-          .withConverter(
-            fromFirestore: (snapshot, options) {
-              return EventModel.fromFirestore(snapshot);
-            },
-            toFirestore: (value, options) {
-              return {};
-            },
-          )
+          .withConverter(fromFirestore: (snapshot, options) => EventModel.fromFirestore(snapshot), toFirestore: (value, options) => {})
           .get();
 
       if (response.docs.isNotEmpty) {

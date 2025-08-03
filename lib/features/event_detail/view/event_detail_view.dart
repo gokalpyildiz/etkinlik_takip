@@ -14,44 +14,42 @@ class EventDetailView extends StatelessWidget {
   final String eventId;
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => EventDetailCubit(eventId),
+  Widget build(BuildContext context) => BlocProvider(
+    create: (context) => EventDetailCubit(eventId),
 
-      child: MyScaffold(
-        appBar: AppBar(title: const Text('Etkinlik Detayları')),
-        child: BlocBuilder<EventDetailCubit, EventDetailState>(
-          builder: (context, state) {
-            final cubit = context.read<EventDetailCubit>();
-            if (state.isLoading) return const Center(child: CircularProgressIndicator());
-            if (cubit.event == null) return const Center(child: Text('Etkinlik Bulunamadı'));
-            final event = cubit.event;
-            return Padding(
-              padding: const ProjectPadding.pageContentPadding(),
-              child: Column(
-                children: [
-                  Card(
-                    color: context.colorScheme.onSecondary,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 20,
-                        children: [
-                          MyText(event!.title ?? ''),
-                          EventPhotoWidget(imageList: event.imageList),
-                          MyText(event.description ?? ''),
-                          MyText(event.date.toString()),
-                        ],
-                      ),
+    child: MyScaffold(
+      appBar: AppBar(title: const Text('Etkinlik Detayları')),
+      child: BlocBuilder<EventDetailCubit, EventDetailState>(
+        builder: (context, state) {
+          final cubit = context.read<EventDetailCubit>();
+          if (state.isLoading) return const Center(child: CircularProgressIndicator());
+          if (cubit.event == null) return const Center(child: Text('Etkinlik Bulunamadı'));
+          final event = cubit.event;
+          return Padding(
+            padding: const ProjectPadding.pageContentPadding(),
+            child: Column(
+              children: [
+                Card(
+                  color: context.colorScheme.onSecondary,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 20,
+                      children: [
+                        MyText(event!.title ?? ''),
+                        EventPhotoWidget(imageList: event.imageList),
+                        MyText(event.description ?? ''),
+                        MyText(event.date.toString()),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            );
-          },
-        ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
-    );
-  }
+    ),
+  );
 }

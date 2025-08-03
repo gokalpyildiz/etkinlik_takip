@@ -21,9 +21,8 @@ class EventPhotoWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Image.network(
               image,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(color: context.colorScheme.error, height: photoHeight, width: photoHeight, child: const Icon(Icons.no_photography));
-              },
+              errorBuilder: (context, error, stackTrace) =>
+                  Container(color: context.colorScheme.error, height: photoHeight, width: photoHeight, child: const Icon(Icons.no_photography)),
             ),
           );
         },

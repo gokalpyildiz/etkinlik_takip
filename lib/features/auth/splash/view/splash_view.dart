@@ -36,16 +36,14 @@ class _SplashViewState extends State<SplashView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            context.router.replace(LoginRoute());
-          },
-          child: const Text('Start App'),
-        ),
+  Widget build(BuildContext context) => Scaffold(
+    body: Center(
+      child: ElevatedButton(
+        onPressed: () {
+          context.router.replace(LoginRoute());
+        },
+        child: const Text('Start App'),
       ),
-    );
-  }
+    ),
+  );
 }

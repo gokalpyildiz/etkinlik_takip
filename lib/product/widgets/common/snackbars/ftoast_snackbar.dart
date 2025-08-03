@@ -30,9 +30,7 @@ final class FlutterToast {
         ),
         //gravity: gravity,
         toastDuration: toastDuration,
-        positionedToastBuilder: (context, child, gravity) {
-          return Positioned(top: context.mediaSize.height / 2, left: 10, right: 10, child: child);
-        },
+        positionedToastBuilder: (context, child, gravity) => Positioned(top: context.mediaSize.height / 2, left: 10, right: 10, child: child),
       );
   }
 
@@ -60,9 +58,7 @@ final class FlutterToast {
         ),
         toastDuration: toastDuration,
         gravity: gravity,
-        positionedToastBuilder: (context, child, gravity) {
-          return Positioned(top: context.mediaSize.height / 2, left: 10, right: 10, child: child);
-        },
+        positionedToastBuilder: (context, child, gravity) => Positioned(top: context.mediaSize.height / 2, left: 10, right: 10, child: child),
       );
   }
 

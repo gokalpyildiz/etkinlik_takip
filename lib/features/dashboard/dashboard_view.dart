@@ -22,47 +22,43 @@ class _DashBoardViewState extends State<DashBoardView> {
       value: ProductStateItems.dashboardCubit,
       child: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) => AutoTabsScaffold(
-          routes: [const HomeRoute(), const ProfileRoute()],
+          routes: const [HomeRoute(), ProfileRoute()],
           lazyLoad: true,
-          transitionBuilder: (context, child, animation) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-          bottomNavigationBuilder: (context, tabsRouter) {
-            return AnimatedCrossFade(
-              duration: const Duration(milliseconds: 500),
-              crossFadeState: state.isInnerScrool ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-              secondChild: const SizedBox(),
-              firstChild: DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border(top: BorderSide(color: context.colorScheme.surfaceContainer)),
-                ),
-                child: BottomNavigationBar(
-                  backgroundColor: context.colorScheme.secondaryContainer,
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: (value) async {
-                    context.tabsRouter.setActiveIndex(value);
-                  },
-                  selectedItemColor: activeColor,
-                  selectedFontSize: 13,
-                  unselectedFontSize: 11,
-                  elevation: 0,
-                  type: BottomNavigationBarType.fixed,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: Assets.svg.home.svg(),
-                      label: 'Anasayfa',
-                      activeIcon: Assets.svg.home.svg(colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn)),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Assets.svg.user.svg(),
-                      label: 'Profil',
-                      activeIcon: Assets.svg.user.svg(colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn)),
-                    ),
-                  ],
-                ),
+          transitionBuilder: (context, child, animation) => FadeTransition(opacity: animation, child: child),
+          bottomNavigationBuilder: (context, tabsRouter) => AnimatedCrossFade(
+            duration: const Duration(milliseconds: 500),
+            crossFadeState: state.isInnerScrool ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            secondChild: const SizedBox(),
+            firstChild: DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border(top: BorderSide(color: context.colorScheme.surfaceContainer)),
               ),
-            );
-          },
+              child: BottomNavigationBar(
+                backgroundColor: context.colorScheme.secondaryContainer,
+                currentIndex: tabsRouter.activeIndex,
+                onTap: (value) async {
+                  context.tabsRouter.setActiveIndex(value);
+                },
+                selectedItemColor: activeColor,
+                selectedFontSize: 13,
+                unselectedFontSize: 11,
+                elevation: 0,
+                type: BottomNavigationBarType.fixed,
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Assets.svg.home.svg(),
+                    label: 'Anasayfa',
+                    activeIcon: Assets.svg.home.svg(colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn)),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Assets.svg.user.svg(),
+                    label: 'Profil',
+                    activeIcon: Assets.svg.user.svg(colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn)),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

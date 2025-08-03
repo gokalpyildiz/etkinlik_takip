@@ -74,16 +74,14 @@ class UserModel extends Equatable {
     String? phoneCountryCode,
     String? phone,
     DateTime? registerDate,
-  }) {
-    return UserModel(
-      userId: userId ?? this.userId,
-      email: email ?? this.email,
-      name: name ?? this.name,
-      surname: surname ?? this.surname,
-      notificationToken: notificationToken ?? this.notificationToken,
-      phoneCountryCode: phoneCountryCode ?? this.phoneCountryCode,
-      phone: phone ?? this.phone,
-      registerDate: registerDate ?? this.registerDate,
-    );
-  }
+  }) => UserModel(
+    userId: userId ?? this.userId,
+    email: email ?? this.email,
+    name: name ?? this.name,
+    surname: surname ?? this.surname,
+    notificationToken: notificationToken ?? this.notificationToken,
+    phoneCountryCode: phoneCountryCode ?? this.phoneCountryCode,
+    phone: phone ?? this.phone,
+    registerDate: registerDate ?? this.registerDate,
+  );
 }

@@ -205,7 +205,5 @@ class MyStringUtils {
     return regex.hasMatch(email);
   }
 
-  static bool validateStringRange(String text, [int minLength = 8, int maxLength = 20]) {
-    return text.length >= minLength && text.length <= maxLength;
-  }
+  static bool validateStringRange(String text, [int minLength = 8, int maxLength = 20]) => text.length >= minLength && text.length <= maxLength;
 }

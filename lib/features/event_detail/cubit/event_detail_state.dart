@@ -8,7 +8,6 @@ class EventDetailState extends Equatable {
   @override
   List<Object> get props => [isLoading, showSuccesConnection];
 
-  EventDetailState copyWith({bool? isLoading, bool? showSuccesConnection}) {
-    return EventDetailState(isLoading: isLoading ?? this.isLoading, showSuccesConnection: showSuccesConnection ?? this.showSuccesConnection);
-  }
+  EventDetailState copyWith({bool? isLoading, bool? showSuccesConnection}) =>
+      EventDetailState(isLoading: isLoading ?? this.isLoading, showSuccesConnection: showSuccesConnection ?? this.showSuccesConnection);
 }

@@ -6,7 +6,5 @@ final class EventServiceMock implements IEventService {
   @override
   EventServiceMock();
   @override
-  Future<BasePaginationModel<EventModel>?> getEvents() async {
-    return BasePaginationModel(data: [], success: true);
-  }
+  Future<BasePaginationModel<EventModel>?> getEvents() async => BasePaginationModel(data: [], success: true);
 }

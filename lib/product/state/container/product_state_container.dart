@@ -24,13 +24,13 @@ final class ProductContainer {
       ..registerLazySingleton<DashboardCubit>(DashboardCubit.new)
       ..registerLazySingleton<ProductCubit>(ProductCubit.new)
       ..registerLazySingleton<ProfileCubit>(ProfileCubit.new)
-      ..registerLazySingleton(() {
-        return HomeCubit(
+      ..registerLazySingleton(
+        () => HomeCubit(
           eventCacheFunc: EventCacheService(eventListCacheOperation: ProductStateItems.productCache.eventListCacheOperation),
           eventService: EventFirebaseService.init(),
           connectivityService: ConnectivityService(),
-        );
-      });
+        ),
+      );
   }
 
   /// read your dependency item for [ProductContainer]

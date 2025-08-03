@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CustomSliverHeader extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeight;
-  final Widget Function(BuildContext context, double shrinkOffset, bool overlapsContent)? builder;
-  final Widget? child;
-  final Color? backgroundColor;
-  final bool withFade;
-  final bool withScale;
-
   CustomSliverHeader({
     required this.minHeight,
     required this.maxHeight,
@@ -18,6 +10,13 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
     this.withFade = true,
     this.withScale = true,
   }) : assert(child != null || builder != null, 'Either child or builder must be provided');
+  final double minHeight;
+  final double maxHeight;
+  final Widget Function(BuildContext context, double shrinkOffset, bool overlapsContent)? builder;
+  final Widget? child;
+  final Color? backgroundColor;
+  final bool withFade;
+  final bool withScale;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -42,13 +41,12 @@ class CustomSliverHeader extends SliverPersistentHeaderDelegate {
   double get minExtent => minHeight;
 
   @override
-  bool shouldRebuild(covariant CustomSliverHeader oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child ||
-        builder != oldDelegate.builder ||
-        backgroundColor != oldDelegate.backgroundColor ||
-        withFade != oldDelegate.withFade ||
-        withScale != oldDelegate.withScale;
-  }
+  bool shouldRebuild(covariant CustomSliverHeader oldDelegate) =>
+      maxHeight != oldDelegate.maxHeight ||
+      minHeight != oldDelegate.minHeight ||
+      child != oldDelegate.child ||
+      builder != oldDelegate.builder ||
+      backgroundColor != oldDelegate.backgroundColor ||
+      withFade != oldDelegate.withFade ||
+      withScale != oldDelegate.withScale;
 }

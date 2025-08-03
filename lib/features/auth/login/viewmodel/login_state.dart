@@ -7,7 +7,5 @@ class LoginState extends Equatable {
   @override
   List<Object?> get props => [formStatus];
 
-  LoginState copyWith({FormStatusEnum? formStatus}) {
-    return LoginState(formStatus: formStatus);
-  }
+  LoginState copyWith({FormStatusEnum? formStatus}) => LoginState(formStatus: formStatus);
 }

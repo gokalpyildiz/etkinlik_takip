@@ -24,13 +24,11 @@ class TokenModel extends Equatable {
   @override
   List<Object?> get props => [token, expiration, refreshToken, refreshTokenExpireDate, userId];
 
-  TokenModel copyWith({String? token, DateTime? expiration, String? refreshToken, DateTime? refreshTokenExpireDate, String? userId}) {
-    return TokenModel(
-      token: token ?? this.token,
-      expiration: expiration ?? this.expiration,
-      refreshToken: refreshToken ?? this.refreshToken,
-      refreshTokenExpireDate: refreshTokenExpireDate ?? this.refreshTokenExpireDate,
-      userId: userId ?? this.userId,
-    );
-  }
+  TokenModel copyWith({String? token, DateTime? expiration, String? refreshToken, DateTime? refreshTokenExpireDate, String? userId}) => TokenModel(
+    token: token ?? this.token,
+    expiration: expiration ?? this.expiration,
+    refreshToken: refreshToken ?? this.refreshToken,
+    refreshTokenExpireDate: refreshTokenExpireDate ?? this.refreshTokenExpireDate,
+    userId: userId ?? this.userId,
+  );
 }

@@ -28,36 +28,26 @@ class SvgGenImage {
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
-    @deprecated Color? color,
-    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated bool cacheColorFilter = false,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      clipBehavior: clipBehavior,
-      cacheColorFilter: cacheColorFilter,
-    );
-  }
+  }) => SvgPicture.asset(
+    _assetName,
+    key: key,
+    matchTextDirection: matchTextDirection,
+    bundle: bundle,
+    package: package,
+    width: width,
+    height: height,
+    fit: fit,
+    alignment: alignment,
+    allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+    placeholderBuilder: placeholderBuilder,
+    semanticsLabel: semanticsLabel,
+    excludeFromSemantics: excludeFromSemantics,
+    theme: theme,
+    colorFilter: colorFilter,
+    clipBehavior: clipBehavior,
+  );
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
-  }
+  ImageProvider provider({AssetBundle? bundle, String? package}) => AssetImage(_assetName, bundle: bundle, package: package);
 
   String get path => _assetName;
 

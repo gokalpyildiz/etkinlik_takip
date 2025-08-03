@@ -8,13 +8,11 @@ final class BlocInitialize extends StatelessWidget {
   const BlocInitialize({required this.child, super.key});
   final Widget child;
   @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ProductCubit>.value(value: ProductStateItems.productCubit),
-        BlocProvider<ProfileCubit>.value(value: ProductStateItems.profileCubit),
-      ],
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => MultiBlocProvider(
+    providers: [
+      BlocProvider<ProductCubit>.value(value: ProductStateItems.productCubit),
+      BlocProvider<ProfileCubit>.value(value: ProductStateItems.profileCubit),
+    ],
+    child: child,
+  );
 }

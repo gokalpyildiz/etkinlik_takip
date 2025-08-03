@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BreathingProgressIndicator extends StatefulWidget {
+  const BreathingProgressIndicator({super.key, required this.progress, this.color = Colors.blue});
   final double progress;
   final Color color;
-
-  const BreathingProgressIndicator({super.key, required this.progress, this.color = Colors.blue});
 
   @override
   State<BreathingProgressIndicator> createState() => _BreathingProgressIndicatorState();
@@ -24,24 +23,20 @@ class _BreathingProgressIndicatorState extends State<BreathingProgressIndicator>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _breathingAnimation,
-      builder: (context, child) {
-        return Transform.scale(
-          scale: _breathingAnimation.value,
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withValues(alpha: 0.3)),
-            child: Center(
-              child: CircularProgressIndicator(value: widget.progress, strokeWidth: 3, valueColor: AlwaysStoppedAnimation<Color>(widget.color)),
-            ),
-          ),
-        );
-      },
-    );
-  }
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: _breathingAnimation,
+    builder: (context, child) => Transform.scale(
+      scale: _breathingAnimation.value,
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(shape: BoxShape.circle, color: widget.color.withValues(alpha: 0.3)),
+        child: Center(
+          child: CircularProgressIndicator(value: widget.progress, strokeWidth: 3, valueColor: AlwaysStoppedAnimation<Color>(widget.color)),
+        ),
+      ),
+    ),
+  );
 
   @override
   void dispose() {

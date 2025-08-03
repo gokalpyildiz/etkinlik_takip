@@ -21,9 +21,8 @@ class EventModel extends Equatable {
   const EventModel({this.title, this.description, this.date, this.imageList, this.id});
   @override
   List<Object?> get props => [title, description, date, imageList];
-  factory EventModel.fromMap(Map<String, dynamic> map) {
-    return EventModel(title: map['title'], description: map['description'], date: DateTime.parse(map['date']), imageList: map['imageList']);
-  }
+  factory EventModel.fromMap(Map<String, dynamic> map) =>
+      EventModel(title: map['title'], description: map['description'], date: DateTime.parse(map['date']), imageList: map['imageList']);
   factory EventModel.fromFirestore(dynamic doc) {
     final data = doc.data();
     return EventModel(
@@ -34,25 +33,19 @@ class EventModel extends Equatable {
       imageList: (data['imageList'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
   }
-  Map<String, dynamic> toMap() {
-    return {'title': title, 'description': description, 'date': date?.toIso8601String(), 'imageList': imageList};
-  }
+  Map<String, dynamic> toMap() => {'title': title, 'description': description, 'date': date?.toIso8601String(), 'imageList': imageList};
 
-  EventModel fromJson(Map<String, dynamic> json) {
-    return EventModel(
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      date: (json['date'] as DateTime),
-      imageList: (json['imageList'] as List<dynamic>?)?.map((e) => e as String).toList(),
-    );
-  }
+  EventModel fromJson(Map<String, dynamic> json) => EventModel(
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    date: (json['date'] as DateTime),
+    imageList: (json['imageList'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  );
 
-  EventModel copyWith({String? title, String? description, DateTime? date, List<String>? imageList}) {
-    return EventModel(
-      title: title ?? this.title,
-      description: description ?? this.description,
-      date: date ?? this.date,
-      imageList: imageList ?? this.imageList,
-    );
-  }
+  EventModel copyWith({String? title, String? description, DateTime? date, List<String>? imageList}) => EventModel(
+    title: title ?? this.title,
+    description: description ?? this.description,
+    date: date ?? this.date,
+    imageList: imageList ?? this.imageList,
+  );
 }

@@ -34,102 +34,92 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends BaseState<RegisterView> with RegisterViewMixin {
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => cubit,
-      child: BlocListener<RegisterCubit, RegisterState>(
-        listenWhen: (previous, current) => previous.formStatus != current.formStatus,
-        listener: (context, state) {
-          if (state.formStatus == FormStatusEnum.failure) {
-            FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
-          } else if (state.formStatus == FormStatusEnum.success) {
-            FlutterToast.showSuccessful(context, title: 'Kayıt Başarılı');
-            ProductStateItems.productCubit.refreshBottomVies();
-            context.router.replaceAll([const DashBoardRoute()]);
-            ProductStateItems.productCubit.refreshBottomVies();
-          }
-        },
-        child: MyScaffold(
-          appBar: AppBar(
-            actions: [
-              TextButton(
-                onPressed: () {
-                  context.router.maybePop();
-                },
-                child: Text('Giriş Yap', style: context.textTheme.titleMedium?.copyWith(color: context.colorScheme.secondary)),
-              ),
-            ],
-          ),
-          child: Form(
-            key: formKey,
-            autovalidateMode: autoValidateMode,
-            child: Padding(
-              padding: const ProjectPadding.pageContentPadding(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Kayıt Ol', style: context.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
-                  const SizedBox(height: 16),
-                  _name(),
-                  const SizedBox(height: 8),
-                  _surname(),
-                  const SizedBox(height: 8),
-                  _password(),
-                  const SizedBox(height: 8),
-                  _email(),
-                  const SizedBox(height: 8),
-                  const _RegisterPhone(),
-                  const Spacer(),
-                  Center(
-                    child: RegisterButton(formKey: formKey, changeAutoValidateMode: changeAutoValidateMode, cubit: cubit),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+  Widget build(BuildContext context) => BlocProvider(
+    create: (context) => cubit,
+    child: BlocListener<RegisterCubit, RegisterState>(
+      listenWhen: (previous, current) => previous.formStatus != current.formStatus,
+      listener: (context, state) {
+        if (state.formStatus == FormStatusEnum.failure) {
+          FlutterToast.showError(context, title: 'Giriş Yapılamadı', subTitle: cubit.errorMessage);
+        } else if (state.formStatus == FormStatusEnum.success) {
+          FlutterToast.showSuccessful(context, title: 'Kayıt Başarılı');
+          ProductStateItems.productCubit.refreshBottomVies();
+          context.router.replaceAll([const DashBoardRoute()]);
+          ProductStateItems.productCubit.refreshBottomVies();
+        }
+      },
+      child: MyScaffold(
+        appBar: AppBar(
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.router.maybePop();
+              },
+              child: Text('Giriş Yap', style: context.textTheme.titleMedium?.copyWith(color: context.colorScheme.secondary)),
+            ),
+          ],
+        ),
+        child: Form(
+          key: formKey,
+          autovalidateMode: autoValidateMode,
+          child: Padding(
+            padding: const ProjectPadding.pageContentPadding(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Kayıt Ol', style: context.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
+                const SizedBox(height: 16),
+                _name(),
+                const SizedBox(height: 8),
+                _surname(),
+                const SizedBox(height: 8),
+                _password(),
+                const SizedBox(height: 8),
+                _email(),
+                const SizedBox(height: 8),
+                const _RegisterPhone(),
+                const Spacer(),
+                Center(
+                  child: RegisterButton(formKey: formKey, changeAutoValidateMode: changeAutoValidateMode, cubit: cubit),
+                ),
+                const Spacer(),
+              ],
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 
-  Widget _email() {
-    return MyTextFormField(
-      labelText: 'Email',
-      autofillHints: const [AutofillHints.email],
-      keyboardType: TextInputType.emailAddress,
-      validator: ValidationsFunctions.validateEmail,
-      onChanged: (p0) => cubit.email = p0,
-      inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r' '))],
-    );
-  }
+  Widget _email() => MyTextFormField(
+    labelText: 'Email',
+    autofillHints: const [AutofillHints.email],
+    keyboardType: TextInputType.emailAddress,
+    validator: ValidationsFunctions.validateEmail,
+    onChanged: (p0) => cubit.email = p0,
+    inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r' '))],
+  );
 
-  Widget _password() {
-    return MyTextFormField(
-      labelText: 'Parola',
-      validator: ValidationsFunctions.validatePassword,
-      autofillHints: const [AutofillHints.newPassword],
-      onChanged: (p0) => cubit.password = p0,
-      inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r' '))],
-      passwordInput: true,
-    );
-  }
+  Widget _password() => MyTextFormField(
+    labelText: 'Parola',
+    validator: ValidationsFunctions.validatePassword,
+    autofillHints: const [AutofillHints.newPassword],
+    onChanged: (p0) => cubit.password = p0,
+    inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r' '))],
+    passwordInput: true,
+  );
 
-  Widget _surname() {
-    return MyTextFormField(
-      labelText: 'Soyad',
-      autofillHints: const [AutofillHints.familyName],
-      validator: ValidationsFunctions.validateEmty,
-      onChanged: (p0) => cubit.surname = p0,
-    );
-  }
+  Widget _surname() => MyTextFormField(
+    labelText: 'Soyad',
+    autofillHints: const [AutofillHints.familyName],
+    validator: ValidationsFunctions.validateEmty,
+    onChanged: (p0) => cubit.surname = p0,
+  );
 
-  Widget _name() {
-    return MyTextFormField(
-      labelText: 'İsim',
-      validator: ValidationsFunctions.validateEmty,
-      autofillHints: const [AutofillHints.name],
-      onChanged: (p0) => cubit.name = p0,
-    );
-  }
+  Widget _name() => MyTextFormField(
+    labelText: 'İsim',
+    validator: ValidationsFunctions.validateEmty,
+    autofillHints: const [AutofillHints.name],
+    onChanged: (p0) => cubit.name = p0,
+  );
 }

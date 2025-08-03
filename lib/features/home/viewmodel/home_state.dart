@@ -8,7 +8,6 @@ class HomeState extends Equatable {
   @override
   List<Object> get props => [isLoading, showSuccesConnection];
 
-  HomeState copyWith({bool? isLoading, bool? showSuccesConnection}) {
-    return HomeState(isLoading: isLoading ?? this.isLoading, showSuccesConnection: showSuccesConnection ?? this.showSuccesConnection);
-  }
+  HomeState copyWith({bool? isLoading, bool? showSuccesConnection}) =>
+      HomeState(isLoading: isLoading ?? this.isLoading, showSuccesConnection: showSuccesConnection ?? this.showSuccesConnection);
 }

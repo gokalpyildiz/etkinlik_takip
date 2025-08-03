@@ -10,11 +10,9 @@ class ErrorModel extends Equatable {
   @override
   List<Object?> get props => [propertyName, errorMessage, tokenError];
 
-  ErrorModel copyWith({String? propertyName, String? errorMessage, bool? tokenError}) {
-    return ErrorModel(
-      propertyName: propertyName ?? this.propertyName,
-      errorMessage: errorMessage ?? this.errorMessage,
-      tokenError: tokenError ?? this.tokenError,
-    );
-  }
+  ErrorModel copyWith({String? propertyName, String? errorMessage, bool? tokenError}) => ErrorModel(
+    propertyName: propertyName ?? this.propertyName,
+    errorMessage: errorMessage ?? this.errorMessage,
+    tokenError: tokenError ?? this.tokenError,
+  );
 }

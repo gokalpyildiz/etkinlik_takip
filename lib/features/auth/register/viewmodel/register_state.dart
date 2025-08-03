@@ -7,7 +7,5 @@ class RegisterState extends Equatable {
   @override
   List<Object?> get props => [formStatus];
 
-  RegisterState copyWith({FormStatusEnum? formStatus}) {
-    return RegisterState(formStatus: formStatus ?? this.formStatus);
-  }
+  RegisterState copyWith({FormStatusEnum? formStatus}) => RegisterState(formStatus: formStatus ?? this.formStatus);
 }

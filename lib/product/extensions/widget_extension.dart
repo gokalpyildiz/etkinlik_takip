@@ -4,23 +4,21 @@ import 'package:flutter/material.dart';
 
 extension WidgetExtension on Widget {
   Widget get toSliver => SliverToBoxAdapter(child: this);
-  Widget toCopyWidgetWithIcon(BuildContext context, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(child: this),
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: InkWell(
-            onTap: () {
-              CopyClipboardFunction.copyToClipboard(value, context);
-            },
-            child: Icon(Icons.copy, color: context.appTheme.colorScheme.onSurfaceVariant),
-          ),
+  Widget toCopyWidgetWithIcon(BuildContext context, String value) => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Expanded(child: this),
+      Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: InkWell(
+          onTap: () {
+            CopyClipboardFunction.copyToClipboard(value, context);
+          },
+          child: Icon(Icons.copy, color: context.appTheme.colorScheme.onSurfaceVariant),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 
   Widget toGesture({
     GestureTapCallback? onTap,
@@ -28,15 +26,13 @@ extension WidgetExtension on Widget {
     GestureLongPressCallback? onLongPress,
     GestureDragUpdateCallback? onVerticalDragUpdate,
     GestureDragUpdateCallback? onHorizontalDragUpdate,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      onDoubleTap: onDoubleTap,
-      onLongPress: onLongPress,
-      onVerticalDragUpdate: onVerticalDragUpdate,
-      onHorizontalDragUpdate: onHorizontalDragUpdate,
-      behavior: HitTestBehavior.opaque,
-      child: this,
-    );
-  }
+  }) => GestureDetector(
+    onTap: onTap,
+    onDoubleTap: onDoubleTap,
+    onLongPress: onLongPress,
+    onVerticalDragUpdate: onVerticalDragUpdate,
+    onHorizontalDragUpdate: onHorizontalDragUpdate,
+    behavior: HitTestBehavior.opaque,
+    child: this,
+  );
 }
